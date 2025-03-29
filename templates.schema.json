@@ -26,53 +26,68 @@
 							"properties": {
 								"command": {
 									"type": "string",
-									"description": "The command to execute"
+									"enum": ["uv", "npm", "bun"],
+									"description": "The package manager command to execute"
 								},
 								"args": {
 									"type": "array",
 									"items": {
 										"type": "string"
 									},
-									"description": "Arguments for the command"
+									"description": "Arguments for the package manager command"
 								}
-							}
+							},
+							"additionalProperties": false
 						},
 						{
-							"required": ["action", "filename", "from"],
-							"properties": {
-								"action": {
-									"type": "string",
-									"enum": [
-										"create_file",
-										"copy_dir",
-										"modify_package_json",
-										"modify_ts_config",
-										"append_file"
-									],
-									"description": "Action to create a new file"
+							"required": ["action", "filename"],
+							"oneOf": [
+								{
+									"required": ["from"],
+									"properties": {
+										"action": {
+											"type": "string",
+											"enum": ["create_file"],
+											"description": "Action to create a new file"
+										},
+										"filename": {
+											"type": "string",
+											"description": "Target filename with optional template variables"
+										},
+										"from": {
+											"type": "string",
+											"description": "Source file path to copy from"
+										}
+									},
+									"additionalProperties": false
 								},
-								"filename": {
-									"type": "string",
-									"description": "Target filename with optional template variables"
-								},
-								"from": {
-									"type": "string",
-									"description": "Source file path to copy from"
+								{
+									"required": ["template"],
+									"properties": {
+										"action": {
+											"type": "string",
+											"enum": ["create_file"],
+											"description": "Action to create a new file"
+										},
+										"filename": {
+											"type": "string",
+											"description": "Target filename with optional template variables"
+										},
+										"template": {
+											"type": "string",
+											"description": "Template file path to use"
+										}
+									},
+									"additionalProperties": false
 								}
-							}
+							]
 						},
 						{
 							"required": ["action", "from", "to"],
 							"properties": {
 								"action": {
 									"type": "string",
-									"enum": [
-										"create_file",
-										"copy_dir",
-										"modify_package_json",
-										"modify_ts_config",
-										"append_file"
-									],
+									"enum": ["copy_dir"],
 									"description": "Action to copy a directory"
 								},
 								"from": {
@@ -83,7 +98,8 @@
 									"type": "string",
 									"description": "Target directory path with optional template variables"
 								}
-							}
+							},
+							"additionalProperties": false
 						}
 					]
 				},
