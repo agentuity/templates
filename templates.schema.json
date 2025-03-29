@@ -1,0 +1,96 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://agentuity.dev/templates.schema.json",
+	"title": "Agentuity Project Templates",
+	"description": "A list of templates for Agentuity projects",
+	"type": "array",
+	"items": {
+		"type": "object",
+		"required": ["name", "description", "steps"],
+		"properties": {
+			"name": {
+				"type": "string",
+				"description": "The name of the template"
+			},
+			"description": {
+				"type": "string",
+				"description": "A description of what the template provides"
+			},
+			"steps": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"oneOf": [
+						{
+							"required": ["command", "args"],
+							"properties": {
+								"command": {
+									"type": "string",
+									"description": "The command to execute"
+								},
+								"args": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									},
+									"description": "Arguments for the command"
+								}
+							}
+						},
+						{
+							"required": ["action", "filename", "from"],
+							"properties": {
+								"action": {
+									"type": "string",
+									"enum": [
+										"create_file",
+										"copy_dir",
+										"modify_package_json",
+										"modify_ts_config",
+										"append_file"
+									],
+									"description": "Action to create a new file"
+								},
+								"filename": {
+									"type": "string",
+									"description": "Target filename with optional template variables"
+								},
+								"from": {
+									"type": "string",
+									"description": "Source file path to copy from"
+								}
+							}
+						},
+						{
+							"required": ["action", "from", "to"],
+							"properties": {
+								"action": {
+									"type": "string",
+									"enum": [
+										"create_file",
+										"copy_dir",
+										"modify_package_json",
+										"modify_ts_config",
+										"append_file"
+									],
+									"description": "Action to copy a directory"
+								},
+								"from": {
+									"type": "string",
+									"description": "Source directory path"
+								},
+								"to": {
+									"type": "string",
+									"description": "Target directory path with optional template variables"
+								}
+							}
+						}
+					]
+				},
+				"minItems": 1,
+				"description": "List of steps to execute for this template"
+			}
+		},
+		"additionalProperties": false
+	}
+}

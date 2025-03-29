@@ -1,0 +1,246 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://agentuity.dev/rules.schema.json",
+	"title": "Agentuity Project Rules",
+	"description": "A list of rules for generating a Agentuity project",
+	"type": "object",
+	"required": [
+		"identifier",
+		"language",
+		"runtime",
+		"src_dir",
+		"filename",
+		"bundle",
+		"development",
+		"deployment",
+		"new_agent",
+		"new_project"
+	],
+	"properties": {
+		"identifier": {
+			"type": "string",
+			"description": "Unique identifier for the template"
+		},
+		"language": {
+			"type": "string",
+			"description": "Programming language used",
+			"enum": ["python", "javascript"]
+		},
+		"runtime": {
+			"type": "string",
+			"description": "Runtime environment",
+			"enum": ["uv", "bunjs", "nodejs"]
+		},
+		"src_dir": {
+			"type": "string",
+			"description": "Source directory for agents"
+		},
+		"filename": {
+			"type": "string",
+			"description": "Main agent file name"
+		},
+		"bundle": {
+			"type": "object",
+			"required": ["enabled", "ignore"],
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"ignore": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Patterns to ignore during bundling"
+				}
+			}
+		},
+		"development": {
+			"type": "object",
+			"required": ["port", "watch", "command", "args"],
+			"properties": {
+				"port": {
+					"type": "integer",
+					"description": "Development server port"
+				},
+				"watch": {
+					"type": "object",
+					"required": ["enabled", "files"],
+					"properties": {
+						"enabled": {
+							"type": "boolean"
+						},
+						"files": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							},
+							"description": "Files to watch for changes"
+						}
+					}
+				},
+				"command": {
+					"type": "string",
+					"description": "Development command to run"
+				},
+				"args": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Arguments for development command"
+				}
+			}
+		},
+		"deployment": {
+			"type": "object",
+			"required": ["resources", "command", "args"],
+			"properties": {
+				"resources": {
+					"type": "object",
+					"required": ["memory", "cpu"],
+					"properties": {
+						"memory": {
+							"type": "string",
+							"description": "Memory resource limit"
+						},
+						"cpu": {
+							"type": "string",
+							"description": "CPU resource limit"
+						}
+					}
+				},
+				"command": {
+					"type": "string",
+					"description": "Deployment command to run"
+				},
+				"args": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Arguments for deployment command"
+				}
+			}
+		},
+		"new_agent": {
+			"type": "object",
+			"required": ["steps"],
+			"properties": {
+				"steps": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"oneOf": [
+							{
+								"required": ["action", "filename", "from"],
+								"properties": {
+									"action": {
+										"type": "string",
+										"enum": [
+											"create_file",
+											"copy_dir",
+											"modify_package_json",
+											"modify_ts_config",
+											"append_file"
+										]
+									},
+									"filename": {
+										"type": "string"
+									},
+									"from": {
+										"type": "string"
+									}
+								}
+							}
+						]
+					}
+				}
+			}
+		},
+		"new_project": {
+			"type": "object",
+			"required": ["steps"],
+			"properties": {
+				"steps": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"oneOf": [
+							{
+								"required": ["command", "args"],
+								"properties": {
+									"command": {
+										"type": "string"
+									},
+									"args": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									}
+								}
+							},
+							{
+								"required": ["action"],
+								"properties": {
+									"action": {
+										"type": "string",
+										"enum": [
+											"create_file",
+											"delete_file",
+											"copy_dir",
+											"modify_package_json",
+											"modify_ts_config",
+											"append_file"
+										]
+									},
+									"filename": {
+										"type": "string"
+									},
+									"source": {
+										"type": "string",
+										"description": "Source file path for create_file and copy_dir actions"
+									},
+									"template": {
+										"type": "string"
+									},
+									"files": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									},
+									"content": {
+										"type": "string"
+									},
+									"script": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"required": ["name", "value"],
+											"properties": {
+												"name": {
+													"type": "string"
+												},
+												"value": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"to": {
+										"type": "string"
+									},
+									"filter": {
+										"type": "string"
+									}
+								}
+							}
+						]
+					}
+				}
+			}
+		}
+	}
+}
