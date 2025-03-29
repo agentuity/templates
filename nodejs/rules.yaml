@@ -33,7 +33,6 @@ deployment:
     - --no-deprecation
     - --no-global-search-paths
     - --report-uncaught-exception
-    - --enable-source-maps
     - .agentuity/index.js
 new_agent:
   steps:
