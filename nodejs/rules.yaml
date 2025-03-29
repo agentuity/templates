@@ -33,6 +33,7 @@ deployment:
     - --no-deprecation
     - --no-global-search-paths
     - --report-uncaught-exception
+    - --enable-source-maps
     - .agentuity/index.js
 new_agent:
   steps:
@@ -49,8 +50,6 @@ new_project:
       args:
         - install
         - "@agentuity/sdk@latest"
-        - ai
-        - "@ai-sdk/openai"
     - command: npm
       args:
         - install

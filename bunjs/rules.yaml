@@ -53,9 +53,7 @@ new_project:
     - command: bun
       args:
         - add
-        - "@agentuity/sdk"
-        - ai
-        - "@ai-sdk/openai"
+        - "@agentuity/sdk@latest"
     - action: delete_file
       files:
         - "index.ts"
