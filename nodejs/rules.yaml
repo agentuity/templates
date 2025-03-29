@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=../rules.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/agentuity/templates/main/rules.schema.json
 identifier: "nodejs"
 language: "javascript"
 runtime: "nodejs"

@@ -1,0 +1,66 @@
+name: Validate JSON Schemas
+
+on:
+  push:
+    paths:
+      - '**.yaml'
+      - '**.yml'
+      - '**.json'
+  pull_request:
+    paths:
+      - '**.yaml'
+      - '**.yml'
+      - '**.json'
+
+jobs:
+  validate-templates:
+    name: Validate Template Schemas
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate JSON Templates Schema
+        uses: dsanders11/json-schema-validate-action@v1.2.0
+        with:
+          schema: json-schema
+          files: |
+            templates.schema.json
+
+      - name: Validate JSON Rules Schema
+        uses: dsanders11/json-schema-validate-action@v1.2.0
+        with:
+          schema: json-schema
+          files: |
+            rules.schema.json
+
+      - name: Validate JSON Runtimes Schema
+        uses: dsanders11/json-schema-validate-action@v1.2.0
+        with:
+          schema: json-schema
+          files: |
+            runtimes.schema.json
+
+      - name: Validate templates.yaml files
+        uses: dsanders11/json-schema-validate-action@v1.2.0
+        with:
+          schema: ./templates.schema.json
+          files: |
+            **/templates.yaml
+
+      - name: Validate rules.yaml files
+        uses: dsanders11/json-schema-validate-action@v1.2.0
+        with:
+          schema: ./rules.schema.json
+          files: |
+            **/rules.yaml
+
+      - name: Validate rules.yaml files
+        uses: dsanders11/json-schema-validate-action@v1.2.0
+        with:
+          schema: ./runtimes.schema.json
+          files: |
+            **/runtimes.yaml
+

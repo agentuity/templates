@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=runtimes.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/agentuity/templates/main/runtimes.schema.json
 - name: "Bun"
   description: "Bun is a fast, modern runtime for TypeScript."
   identifier: "bunjs"

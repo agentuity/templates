@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=../templates.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/agentuity/templates/main/templates.schema.json
 - name: "OpenAI SDK for Typescript"
   description: "Official TypeScript library for the OpenAI"
   steps:
