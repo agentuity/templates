@@ -75,13 +75,13 @@ new_project:
       keywords: ["agentuity", "agent", "ai", "ai agent"]
     - action: create_file
       filename: tsconfig.json
-      from: "data/nodejs/tsconfig.json"
+      from: "nodejs/tsconfig.json"
     - action: create_file
       filename: "index.ts"
       from: "common/js/boot.ts"
     - action: create_file
       filename: ".gitignore"
-      from: "data/nodejs/gitignore"
+      from: "nodejs/gitignore"
     - action: create_file
       filename: "README.md"
       from: "common/js/nodejs-readme.md"
