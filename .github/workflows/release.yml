@@ -1,0 +1,53 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+' # matches semantic versioning tags like v1.0.0
+      - 'v[0-9]+.[0-9]+.[0-9]+-*' # matches prerelease tags like v1.0.0-beta.1
+
+jobs:
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # needed for creating releases
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # fetch all history and tags
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Get Changelog Entry
+        id: changelog_reader
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          # Extract changes between this tag and the previous one
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -n "$PREVIOUS_TAG" ]; then
+            CHANGES=$(git log --pretty=format:"* %s" $PREVIOUS_TAG..$TAG_NAME)
+          else
+            CHANGES=$(git log --pretty=format:"* %s" $TAG_NAME)
+          fi
+          # Escape newlines and quotes for GitHub Actions
+          CHANGES="${CHANGES//'%'/'%25'}"
+          CHANGES="${CHANGES//$'\n'/'%0A'}"
+          CHANGES="${CHANGES//$'\r'/'%0D'}"
+          echo "CHANGES<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ steps.get_version.outputs.VERSION }}
+          body: |
+            ## What's Changed
+            ${{ steps.changelog_reader.outputs.CHANGES }}
+          draft: false
+          prerelease: ${{ contains(github.ref, '-') }} # true for tags with a hyphen like v1.0.0-beta.1
+          token: ${{ secrets.GITHUB_TOKEN }} 
