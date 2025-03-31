@@ -41,6 +41,7 @@
         - --quiet
         - langchain
         - langchain-openai
+        - langchain-community
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/langchain/openai.py"
