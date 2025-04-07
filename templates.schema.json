@@ -100,6 +100,29 @@
 								}
 							},
 							"additionalProperties": false
+						},
+						{
+							"required": ["action", "repo"],
+							"properties": {
+								"action": {
+									"type": "string",
+									"enum": ["clone_repo"],
+									"description": "Action to clone a GitHub repository"
+								},
+								"repo": {
+									"type": "string",
+									"description": "The name of the repository to clone"
+								},
+								"to": {
+									"type": "string",
+									"description": "Target directory path where to clone the repository. Defaults to the project directory."
+								},
+								"branch": {
+									"type": "string",
+									"description": "The branch to clone. Defaults to the default branch of the repository."
+								}
+							},
+							"additionalProperties": false
 						}
 					]
 				},
