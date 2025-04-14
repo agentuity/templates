@@ -75,7 +75,7 @@ new_project:
     - action: modify_ts_config
       types:
         - bun
-        - "@agentuity/sdk@latest"
+        - "@agentuity/sdk"
       compilerOptions:
         - name: "esModuleInterop"
           value: true
