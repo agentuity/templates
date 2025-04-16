@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/agentuity/templates/main/templates.schema.json
 - name: "🌴 React Miami 🏖️"
-  description: "Example template for public preview launch of a concierge agent at React Miami 2025."
+  description: "Concierge agents for React Miami 2025."
   steps:
     - action: clone_repo
       repo: "agentuity/agent-react-miami-concierge-template"
