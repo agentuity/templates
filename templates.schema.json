@@ -16,6 +16,10 @@
 				"type": "string",
 				"description": "A description of what the template provides"
 			},
+			"skip_agent_step": {
+				"type": "boolean",
+				"description": "Whether to skip the agent step for this template. Defaults to false."
+			},
 			"steps": {
 				"type": "array",
 				"items": {
@@ -120,10 +124,6 @@
 								"branch": {
 									"type": "string",
 									"description": "The branch to clone. Defaults to the default branch of the repository."
-								},
-								"skip_agent_step": {
-									"type": "boolean",
-									"description": "Whether to skip the agent step for this template. Defaults to false."
 								}
 							},
 							"additionalProperties": false
