@@ -2,39 +2,38 @@ import type { AgentRequest, AgentResponse, AgentContext } from "@agentuity/sdk";
 import { Agent, Memory } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
 
+const memory = new Memory();
+
+const simpleWorkflow = {
+  start: (input: string) => ({
+    llm: {
+      messages: [
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: input || 'Hello, who are you?' }
+      ],
+      model: openai('gpt-4o-mini'),
+    },
+    then: (response) => {
+      return { result: response.content };
+    }
+  })
+};
+
+const mastraAgent = new Agent({
+  name: '{{ .AgentName }}',
+  instructions: 'You are a helpful assistant that provides concise and accurate information.',
+  model: openai('gpt-4o-mini'),
+  memory,
+  workflow: { simpleWorkflow }
+});
+
 export default async function Agent(
   req: AgentRequest,
   resp: AgentResponse,
   ctx: AgentContext,
 ) {
-  const memory = new Memory();
-  
-  const simpleWorkflow = {
-    start: () => ({
-      llm: {
-        messages: [
-          { role: 'system', content: 'You are a helpful assistant.' },
-          { role: 'user', content: req.input || 'Hello, who are you?' }
-        ],
-        model: openai('gpt-4o-mini'),
-      },
-      then: (response) => {
-        ctx.logger.info('Agent response:', response.content);
-        return { result: response.content };
-      }
-    })
-  };
-
-  const mastraAgent = new Agent({
-    name: '{{ .AgentName }}',
-    instructions: 'You are a helpful assistant that provides concise and accurate information.',
-    model: openai('gpt-4o-mini'),
-    memory,
-    workflow: { simpleWorkflow }
-  });
-
   try {
-    const result = await mastraAgent.run('start');
+    const result = await mastraAgent.run('start', req.input || 'Hello, who are you?');
     ctx.logger.info('Workflow result:', result);
     
     return resp.text(result.result);
