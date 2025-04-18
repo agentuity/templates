@@ -54,6 +54,7 @@ new_project:
       args:
         - add
         - "@agentuity/sdk@latest"
+        - "@types/bun"
     - action: delete_file
       files:
         - "index.ts"
@@ -74,7 +75,7 @@ new_project:
       keywords: ["agentuity", "agent", "ai", "ai agent", "bun"]
     - action: modify_ts_config
       types:
-        - bun
+        - "@types/bun"
         - "@agentuity/sdk"
       compilerOptions:
         - name: "esModuleInterop"
