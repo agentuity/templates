@@ -1,5 +1,5 @@
 import type { AgentRequest, AgentResponse, AgentContext } from "@agentuity/sdk";
-import { Agent } from '@mastra/core';
+import { Agent } from '@mastra/core/agent';
 import { openai } from '@ai-sdk/openai';
 
 const simpleWorkflow = {
@@ -17,14 +17,14 @@ const simpleWorkflow = {
   })
 };
 
-const mastraAgent = new Agent({
+const mastraAgent = Agent({
   name: '{{ .AgentName }}',
   instructions: 'You are a helpful assistant that provides concise and accurate information.',
   model: openai('gpt-4o-mini'),
   workflow: { simpleWorkflow }
 });
 
-export default async function Agent(
+export default async function AgentuityAgent(
   req: AgentRequest,
   resp: AgentResponse,
   ctx: AgentContext,
