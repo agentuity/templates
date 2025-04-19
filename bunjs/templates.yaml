@@ -75,4 +75,4 @@
         - "zod"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
-      from: "common/js/mastra/agent.ts"
+      template: "common/js/mastra/agent.ts"
