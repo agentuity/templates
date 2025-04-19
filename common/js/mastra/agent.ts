@@ -1,8 +1,6 @@
 import type { AgentRequest, AgentResponse, AgentContext } from "@agentuity/sdk";
-import { Agent, Memory } from '@mastra/core';
+import { Agent } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
-
-const memory = new Memory();
 
 const simpleWorkflow = {
   start: (input: string) => ({
@@ -23,7 +21,6 @@ const mastraAgent = new Agent({
   name: '{{ .AgentName }}',
   instructions: 'You are a helpful assistant that provides concise and accurate information.',
   model: openai('gpt-4o-mini'),
-  memory,
   workflow: { simpleWorkflow }
 });
 
