@@ -66,3 +66,19 @@
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/vercel/anthropic.ts"
+- name: "Mastra TypeScript Agent Framework"
+  description: "Mastra is a TypeScript agent framework that provides primitives to build AI applications and features."
+  steps:
+    - command: npm
+      args:
+        - install
+        - --no-fund
+        - --no-audit
+        - mastra
+        - "@mastra/core"
+        - "@ai-sdk/openai"
+        - "ai"
+        - "zod"
+    - action: create_file
+      filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
+      template: "common/js/mastra/agent.ts"
