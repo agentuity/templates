@@ -8,16 +8,14 @@ export default async function AgentuityAgent(
   ctx: AgentContext,
 ) {
   try {
-    const agent = Agent({
+    const agent = new Agent({
       name: '{{ .AgentName }}',
       instructions: 'You are a helpful assistant that provides concise and accurate information.',
       model: openai('gpt-4o-mini'),
     });
 
-    const result = await agent.generate(req.input || 'Hello, who are you?');
-    ctx.logger.info('Agent result:', result);
-    
-    return resp.text(result);
+    const result = await agent.generate(req.data.text || 'Hello, who are you?');
+    return resp.text(result.text);
   } catch (error) {
     ctx.logger.error('Error running agent:', error);
     return resp.text('Sorry, there was an error processing your request.');
