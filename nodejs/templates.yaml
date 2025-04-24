@@ -1,21 +1,4 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/agentuity/templates/main/templates.schema.json
-- name: "🌴 React Miami 🏖️"
-  description: "Concierge agents for React Miami 2025."
-  steps:
-    - action: clone_repo
-      repo: "agentuity/agent-react-miami-concierge-template"
-    - command: npm
-      args:
-        - install
-        - --no-fund
-        - --no-audit
-        - "@ai-sdk/anthropic"
-        - "@ai-sdk/google"
-        - "@ai-sdk/openai"
-        - "@ai-sdk/perplexity"
-        - "ai"
-        - "zod"
-  skip_agent_step: true
 - name: "OpenAI SDK for Typescript"
   description: "Official TypeScript library for the OpenAI"
   steps:
