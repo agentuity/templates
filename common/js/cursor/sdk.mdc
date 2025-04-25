@@ -1,6 +1,7 @@
 ---
 description: Agentuity JavaScript SDK API Reference
 globs: "src/agents/**/*.ts"
+alwaysApply: false
 ---
 
 # Agentuity JavaScript SDK
@@ -29,11 +30,11 @@ The `AgentRequest` interface provides methods for accessing request data:
 - `request.metadata(key, defaultValue)`: Gets metadata associated with the request
 - `request.get(key, defaultValue)`: Gets the metadata value of the request
 - `request.data.contentType`: Gets the content type of the request payload
-- `request.data.json`: Gets the payload as a JSON object
-- `request.data.text`: Gets the payload as a string
-- `request.data.buffer`: Gets the payload as a Buffer
-- `request.data.binary`: Gets the payload as a Uint8Array<ArrayBuffer>
-- `request.data.object<T>`: Gets the payload as a typed object
+- `request.data.json(): Promise<Json>`: Gets the payload as a JSON object
+- `request.data.text(): Promise<string>`: Gets the payload as a string
+- `request.data.buffer(): Promise<ArrayBuffer>`: Gets the payload as a ArrayBuffer
+- `request.data.binary(): Promise<ArrayBuffer>`: Gets the payload as a ArrayBuffer
+- `request.data.object<T>: Promise<T>`: Gets the payload as a typed object
 
 ### AgentResponse
 
