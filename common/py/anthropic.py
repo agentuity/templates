@@ -1,11 +1,11 @@
 from agentuity import AgentRequest, AgentResponse, AgentContext
-from anthropic import Anthropic
+from anthropic import AsyncAnthropic
 
-client = Anthropic()
+client = AsyncAnthropic()
 
 
 async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
-    result = client.messages.create(
+    result = await client.messages.create(
         max_tokens=1024,
         messages=[
             {
