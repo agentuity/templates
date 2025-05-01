@@ -52,7 +52,8 @@
       args:
         - add
         - --quiet
-        - llama-index
+        - llama-index==0.12.33
+        - llama-index-core==0.12.33
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/llamaindex/openai.py"
