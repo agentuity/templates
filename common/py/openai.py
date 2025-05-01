@@ -1,11 +1,11 @@
-from openai import OpenAI
+from openai import AsyncOpenAI
 from agentuity import AgentRequest, AgentResponse, AgentContext
 
-client = OpenAI()
+client = AsyncOpenAI()
 
 
 async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
-    chat_completion = client.chat.completions.create(
+    chat_completion = await client.chat.completions.create(
         messages=[
             {
                 "role": "system",
@@ -13,7 +13,7 @@ async def run(request: AgentRequest, response: AgentResponse, context: AgentCont
             },
             {
                 "role": "user",
-                "content": request.data.text or "Why is the sky blue?",
+                "content": await request.data.text() or "Why is the sky blue?",
             },
         ],
         model="gpt-4o",
