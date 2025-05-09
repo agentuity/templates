@@ -10,6 +10,9 @@
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/openai.py"
+    - action: create_file
+      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
 - name: "LiteLLM"
   description: "LiteLLM Python SDK"
   steps:
@@ -21,6 +24,9 @@
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/litellm.py"
+    - action: create_file
+      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
 - name: "Anthropic"
   description: "Anthropic Python SDK"
   steps:
@@ -32,6 +38,9 @@
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/anthropic.py"
+    - action: create_file
+      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
 - name: "LangChain"
   description: "LangChain Python SDK with OpenAI"
   steps:
@@ -45,6 +54,9 @@
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/langchain/openai.py"
+    - action: create_file
+      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
 - name: "LlamaIndex"
   description: "LlamaIndex Python SDK with OpenAI"
   steps:
@@ -57,6 +69,9 @@
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/llamaindex/openai.py"
+    - action: create_file
+      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
 - name: "CrewAI"
   description: "CrewAI Python SDK"
   steps:
@@ -71,6 +86,9 @@
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/crew.py"
       template: "common/py/crewai/crew.py"
+    - action: create_file
+      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
     - action: copy_dir
       from: "common/py/crewai/config"
       to: "agents/{{ .AgentName | safe_filename }}/config"
