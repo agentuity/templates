@@ -82,3 +82,6 @@ new_project:
     - action: create_file
       filename: ".editorconfig"
       template: "common/editorconfig"
+    - action: create_file
+      filename: "agents/__init__.py"
+      template: "common/py/init.py"
