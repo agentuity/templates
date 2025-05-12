@@ -5,9 +5,9 @@ from agentuity import autostart
 
 if __name__ == "__main__":
     # Check if AGENTUITY_API_KEY is set
-    if not os.environ.get("AGENTUITY_API_KEY"):
+    if not os.environ.get("AGENTUITY_API_KEY") or not os.environ.get("AGENTUITY_SDK_KEY"):
         print(
-            "\033[31m[ERROR] AGENTUITY_API_KEY is not set. This should have been set automatically by the Agentuity CLI or picked up from the .env file.\033[0m"
+            "\033[31m[ERROR] AGENTUITY_API_KEY or AGENTUITY_SDK_KEY is not set. This should have been set automatically by the Agentuity CLI or picked up from the .env file.\033[0m"
         )
         if os.environ.get("_", "").endswith("uv") and os.path.exists(".env"):
             print(
