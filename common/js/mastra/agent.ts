@@ -2,6 +2,22 @@ import type { AgentRequest, AgentResponse, AgentContext } from "@agentuity/sdk";
 import { Agent } from "@mastra/core/agent";
 import { openai } from "@ai-sdk/openai";
 
+export const welcome = () => {  
+	return {  
+	  welcome: "Welcome to the Mastra TypeScript Agent Framework! I can help you build sophisticated AI applications using the Mastra framework.",  
+	  prompts: [  
+		{  
+		  data: "How do I create a multi-step agent workflow with Mastra?",  
+		  contentType: "text/plain",  
+		},  
+		{  
+		  data: "What are the core components of the Mastra framework?",  
+		  contentType: "text/plain",  
+		}  
+	  ],  
+	};  
+  };
+
 export default async function AgentuityAgent(
 	req: AgentRequest,
 	resp: AgentResponse,
