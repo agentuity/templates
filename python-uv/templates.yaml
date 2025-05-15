@@ -106,4 +106,3 @@
     - action: copy_dir
       from: "common/py/crewai/config"
       to: "agents/{{ .AgentName | safe_filename }}/config"
-

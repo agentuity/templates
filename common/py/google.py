@@ -2,6 +2,7 @@ from google import genai
 from agentuity import AgentRequest, AgentResponse, AgentContext
 import os
 
+# Get your API key here: https://aistudio.google.com/apikey
 api_key = os.getenv("GOOGLE_API_KEY")
 if not api_key:
     raise ValueError("GOOGLE_API_KEY environment variable not set.")
