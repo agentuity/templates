@@ -63,6 +63,8 @@ new_project:
       script:
         - name: "build"
           value: "agentuity build"
+        - name: "dev"
+          value: "agentuity dev"
         - name: "prestart"
           value: "agentuity bundle"
         - name: "start"
