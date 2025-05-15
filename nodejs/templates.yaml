@@ -23,6 +23,18 @@
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/anthropic.ts"
+- name: "Google AI SDK for Typescript"
+  description: "Official TypeScript library for the Google AI"
+  steps:
+    - command: npm
+      args:
+        - install
+        - --no-fund
+        - --no-audit
+        - "@google/genai"
+    - action: create_file
+      filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
+      from: "common/js/google.ts"
 - name: "Vercel AI SDK with OpenAI"
   description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the OpenAI provider using the Vercel AI SDK."
   steps:
@@ -49,6 +61,19 @@
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/vercel/anthropic.ts"
+- name: "Vercel AI SDK with Google"
+  description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the Google provider using the Vercel AI SDK."
+  steps:
+    - command: npm
+      args:
+      - install
+        - --no-fund
+        - --no-audit
+        - ai
+        - "@ai-sdk/google"
+    - action: create_file
+      filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
+      from: "common/js/vercel/google.ts"         
 - name: "Mastra TypeScript Agent Framework"
   description: "Mastra is a TypeScript agent framework that provides primitives to build AI applications and features."
   steps:
