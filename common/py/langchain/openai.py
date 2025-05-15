@@ -6,6 +6,21 @@ from langchain_core.output_parsers import StrOutputParser
 llm = ChatOpenAI()
 
 
+def welcome():  
+    return {  
+        "welcome": "Welcome to the LangChain Agent with OpenAI! I can help you build powerful language processing chains using LangChain and OpenAI models.",  
+        "prompts": [  
+            {  
+                "data": "Create a summarization chain for a long document",  
+                "contentType": "text/plain"  
+            },  
+            {  
+                "data": "How can I use LangChain with vector databases for retrieval?",  
+                "contentType": "text/plain"  
+            }  
+        ]  
+    } 
+
 async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
     prompt = ChatPromptTemplate.from_messages(
         [
