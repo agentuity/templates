@@ -3,6 +3,22 @@ import OpenAI from "openai";
 
 const client = new OpenAI();
 
+export const welcome = () => {  
+	return {  
+	  welcome: "Welcome to the OpenAI TypeScript Agent! I can help you interact with OpenAI models.",  
+	  prompts: [  
+		{  
+		  data: "Generate a creative story about space exploration",  
+		  contentType: "text/plain",  
+		},  
+		{  
+		  data: "How can I use the OpenAI API for text completion?",  
+		  contentType: "text/plain",  
+		}  
+	  ],  
+	};  
+  };
+
 export default async function Agent(
 	req: AgentRequest,
 	resp: AgentResponse,
