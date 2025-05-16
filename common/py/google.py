@@ -9,6 +9,20 @@ if not api_key:
 
 client = genai.Client(api_key=api_key)
 
+def welcome():  
+    return {  
+        "welcome": "Welcome to the Google AI Agent! I can help you interact with Gemini models for natural language tasks.",  
+        "prompts": [  
+            {  
+                "data": "Write a creative story about a journey through time",  
+                "contentType": "text/plain"  
+            },  
+            {  
+                "data": "Explain quantum computing to a high school student",  
+                "contentType": "text/plain"  
+            }  
+        ]  
+    }
 
 async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
     
