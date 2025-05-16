@@ -41,6 +41,20 @@
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
+- name: "Google GenAI"
+  description: "Google Generative AI Python SDK"
+  steps:
+    - command: uv
+      args:
+        - add
+        - --quiet
+        - google-genai
+    - action: create_file
+      filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
+      from: "common/py/google.py"
+    - action: create_file
+      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
 - name: "LangChain"
   description: "LangChain Python SDK with OpenAI"
   steps:
