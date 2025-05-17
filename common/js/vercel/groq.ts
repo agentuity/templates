@@ -8,11 +8,11 @@ export const welcome = () => {
 			"Welcome to the Vercel AI SDK with Groq + LLAMA Agent! I can help you build AI-powered applications using Vercel's AI SDK with Groq powered models.",
 		prompts: [
 			{
-				data: "What is Groq so fast in AI Inference?",
+				data: "Why is Groq so fast in AI Inference?",
 				contentType: "text/plain",
 			},
 			{
-				data: "What are the best practices for prompt engineering with LLAMA?",
+				data: "What are the best practices for prompt engineering with Lllama?",
 				contentType: "text/plain",
 			},
 		],
