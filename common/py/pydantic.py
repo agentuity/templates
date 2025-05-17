@@ -25,7 +25,7 @@ def welcome():
 roulette_agent = Agent(
     "openai:gpt-4o",
     deps_type=int,
-    output_type=bool,
+    output_type=str,
     system_prompt=(
         "Use the `roulette_wheel` function to see if the "
         "customer has won based on the number they provide."
@@ -48,7 +48,7 @@ async def run(request: AgentRequest, response: AgentResponse, context: AgentCont
     # Pull out the user query from the request
     user_query = await request.data.text()
     if not user_query:
-        user_query = random.randint(0, 20)
+        user_query = str(random.randint(0, 20))
 
     context.logger.info(
         "User query: %s, Winning number: %s", user_query, success_number
@@ -75,4 +75,4 @@ async def run(request: AgentRequest, response: AgentResponse, context: AgentCont
 
     except Exception as e:
         context.logger.error("Error running PydanticAI agent: %s", e)
-        return response.json({"error": str(e)}, status_code=500)
+        return response.json({"error": str(e)})
