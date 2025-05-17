@@ -106,3 +106,17 @@
     - action: copy_dir
       from: "common/py/crewai/config"
       to: "agents/{{ .AgentName | safe_filename }}/config"
+- name: "PydanticAI"
+  description: "PydanticAI Python SDK"
+  steps:
+    - command: uv
+      args:
+        - add
+        - --quiet
+        - pydantic_ai
+    - action: create_file
+      filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
+      template: "common/py/pydantic.py"
+    - action: create_file
+      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
