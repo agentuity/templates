@@ -62,13 +62,15 @@ async def run(request: AgentRequest, response: AgentResponse, context: AgentCont
         )
 
         pydantic_ai_result = await roulette_agent.run(user_query, deps=success_number)
-        context.logger.info("PydanticAI result output: %s", pydantic_ai_result.output)
+        raw = pydantic_ai_result.output
+        success = "winner" in raw
+        context.logger.info("Roulette success: %s => %d", success, success_number)
 
         return response.json(
             {
-                "won": pydantic_ai_result.output,
-                "details": "Bet processed by PydanticAI roulette agent.",
-                "user_query": user_query,
+                "success": success,
+                "result": pydantic_ai_result.output,
+                "query": user_query,
                 "success_number": success_number,
             }
         )
