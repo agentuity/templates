@@ -69,6 +69,10 @@ new_project:
           value: "agentuity bundle"
         - name: "start"
           value: "bun run .agentuity/index.js"
+        - name: "lint"
+          value: "biome lint ."
+        - name: "format"
+          value: "biome format --write ."
       main: "index.js"
       type: "module"
       name: "{{ .Name }}"
@@ -104,3 +108,11 @@ new_project:
     - action: create_file
       filename: ".editorconfig"
       template: "common/editorconfig"
+    - command: bun
+      args:
+        - add
+        - "@biomejs/biome"
+        - -D
+    - action: create_file
+      filename: "biome.json"
+      from: "common/js/biome.json"

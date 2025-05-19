@@ -1,0 +1,17 @@
+{
+  "name": "templates",
+  "version": "1.0.0",
+  "description": "Templates for Agentuity projects designed to help you get started with building your own Agents using the Agentuity Cloud Platform.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "biome lint . --error-on-warnings",
+    "format": "biome format --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4"
+  }
+}
