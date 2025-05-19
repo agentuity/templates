@@ -68,7 +68,6 @@ This command will bundle your agent and deploy it to the cloud, making it access
 ```
 ├── agents/             # Agent definitions and implementations
 ├── .venv/              # Virtual environment (created by UV)
-├── .agentuity/         # Agentuity configuration files
 ├── pyproject.toml      # Project dependencies and metadata
 ├── server.py           # Server entry point
 └── agentuity.yaml      # Agentuity project configuration

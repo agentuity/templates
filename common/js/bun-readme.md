@@ -61,7 +61,6 @@ This command will bundle your agent and deploy it to the cloud, making it access
 ```
 ├── agents/             # Agent definitions and implementations
 ├── node_modules/       # Dependencies
-├── .agentuity/         # Agentuity configuration files
 ├── package.json        # Project dependencies and scripts
 └── agentuity.yaml      # Agentuity project configuration
 ```
