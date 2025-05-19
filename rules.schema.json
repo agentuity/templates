@@ -1,408 +1,408 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"$id": "https://agentuity.dev/rules.schema.json",
-	"title": "Agentuity Project Rules",
-	"description": "Configuration rules for Agentuity projects",
-	"type": "object",
-	"required": [
-		"identifier",
-		"language",
-		"runtime",
-		"src_dir",
-		"filename",
-		"bundle",
-		"development",
-		"deployment",
-		"new_agent",
-		"new_project"
-	],
-	"properties": {
-		"identifier": {
-			"type": "string",
-			"description": "Unique identifier for the runtime"
-		},
-		"language": {
-			"type": "string",
-			"enum": ["python", "javascript"],
-			"description": "Programming language used"
-		},
-		"runtime": {
-			"type": "string",
-			"enum": ["uv", "nodejs", "bunjs"],
-			"description": "Runtime environment"
-		},
-		"src_dir": {
-			"type": "string",
-			"description": "Source directory for agents"
-		},
-		"filename": {
-			"type": "string",
-			"description": "Default filename for agent files"
-		},
-		"bundle": {
-			"type": "object",
-			"required": ["enabled", "ignore"],
-			"properties": {
-				"enabled": {
-					"type": "boolean",
-					"description": "Whether bundling is enabled"
-				},
-				"ignore": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"description": "Patterns to ignore during bundling"
-				}
-			},
-			"additionalProperties": false
-		},
-		"development": {
-			"type": "object",
-			"required": ["port", "watch", "command", "args"],
-			"properties": {
-				"port": {
-					"type": "integer",
-					"description": "Development server port"
-				},
-				"watch": {
-					"type": "object",
-					"required": ["enabled", "files"],
-					"properties": {
-						"enabled": {
-							"type": "boolean",
-							"description": "Whether file watching is enabled"
-						},
-						"files": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							},
-							"description": "Patterns of files to watch"
-						}
-					},
-					"additionalProperties": false
-				},
-				"command": {
-					"type": "string",
-					"description": "Development command to run"
-				},
-				"args": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"description": "Arguments for the development command"
-				}
-			},
-			"additionalProperties": false
-		},
-		"deployment": {
-			"type": "object",
-			"required": ["resources", "command", "args"],
-			"properties": {
-				"resources": {
-					"type": "object",
-					"required": ["memory", "cpu"],
-					"properties": {
-						"memory": {
-							"type": "string",
-							"description": "Memory resource limit"
-						},
-						"cpu": {
-							"type": "string",
-							"description": "CPU resource limit"
-						}
-					},
-					"additionalProperties": false
-				},
-				"command": {
-					"type": "string",
-					"description": "Deployment command to run"
-				},
-				"args": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"description": "Arguments for the deployment command"
-				}
-			},
-			"additionalProperties": false
-		},
-		"new_agent": {
-			"type": "object",
-			"required": ["steps"],
-			"properties": {
-				"steps": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"oneOf": [
-							{
-								"required": ["action", "filename", "from"],
-								"properties": {
-									"action": {
-										"type": "string",
-										"enum": ["create_file"],
-										"description": "Action to create a new file"
-									},
-									"filename": {
-										"type": "string",
-										"description": "Target filename with optional template variables"
-									},
-									"from": {
-										"type": "string",
-										"description": "Source file path to copy from"
-									}
-								},
-								"additionalProperties": false
-							}
-						]
-					},
-					"minItems": 1,
-					"description": "Steps to create a new agent"
-				}
-			},
-			"additionalProperties": false
-		},
-		"new_project": {
-			"type": "object",
-			"required": ["steps"],
-			"properties": {
-				"steps": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"oneOf": [
-							{
-								"required": ["command", "args"],
-								"properties": {
-									"command": {
-										"type": "string",
-										"description": "Command to execute"
-									},
-									"args": {
-										"type": "array",
-										"items": {
-											"type": "string"
-										},
-										"description": "Arguments for the command"
-									}
-								},
-								"additionalProperties": false
-							},
-							{
-								"required": ["action"],
-								"oneOf": [
-									{
-										"required": ["filename", "from"],
-										"properties": {
-											"action": {
-												"type": "string",
-												"enum": ["create_file"],
-												"description": "Action to create a new file"
-											},
-											"filename": {
-												"type": "string",
-												"description": "Target filename"
-											},
-											"from": {
-												"type": "string",
-												"description": "Source file path"
-											}
-										},
-										"additionalProperties": false
-									},
-									{
-										"required": ["filename", "template"],
-										"properties": {
-											"action": {
-												"type": "string",
-												"enum": ["create_file"],
-												"description": "Action to create a new file"
-											},
-											"filename": {
-												"type": "string",
-												"description": "Target filename"
-											},
-											"template": {
-												"type": "string",
-												"description": "Template file path"
-											}
-										},
-										"additionalProperties": false
-									},
-									{
-										"required": ["files"],
-										"properties": {
-											"action": {
-												"type": "string",
-												"enum": ["delete_file"],
-												"description": "Action to delete files"
-											},
-											"files": {
-												"type": "array",
-												"items": {
-													"type": "string"
-												},
-												"description": "Files to delete"
-											}
-										},
-										"additionalProperties": false
-									},
-									{
-										"required": ["from", "to", "filter"],
-										"properties": {
-											"action": {
-												"type": "string",
-												"enum": ["copy_dir"],
-												"description": "Action to copy a directory"
-											},
-											"from": {
-												"type": "string",
-												"description": "Source directory path"
-											},
-											"to": {
-												"type": "string",
-												"description": "Target directory path"
-											},
-											"filter": {
-												"type": "string",
-												"description": "File pattern to filter"
-											}
-										},
-										"additionalProperties": false
-									},
-									{
-										"required": [
-											"script",
-											"main",
-											"type",
-											"name",
-											"version",
-											"description",
-											"keywords"
-										],
-										"properties": {
-											"action": {
-												"type": "string",
-												"enum": ["modify_package_json"],
-												"description": "Action to modify package.json"
-											},
-											"script": {
-												"type": "array",
-												"items": {
-													"type": "object",
-													"required": ["name", "value"],
-													"properties": {
-														"name": {
-															"type": "string",
-															"description": "Script name"
-														},
-														"value": {
-															"type": "string",
-															"description": "Script command"
-														}
-													}
-												},
-												"description": "Scripts to add"
-											},
-											"main": {
-												"type": "string",
-												"description": "Main entry point"
-											},
-											"type": {
-												"type": "string",
-												"description": "Package type"
-											},
-											"name": {
-												"type": "string",
-												"description": "Package name"
-											},
-											"version": {
-												"type": "string",
-												"description": "Package version"
-											},
-											"description": {
-												"type": "string",
-												"description": "Package description"
-											},
-											"keywords": {
-												"type": "array",
-												"items": {
-													"type": "string"
-												},
-												"description": "Package keywords"
-											}
-										},
-										"additionalProperties": false
-									},
-									{
-										"required": ["types", "compilerOptions"],
-										"properties": {
-											"action": {
-												"type": "string",
-												"enum": ["modify_ts_config"],
-												"description": "Action to modify tsconfig.json"
-											},
-											"types": {
-												"type": "array",
-												"items": {
-													"type": "string"
-												},
-												"description": "Types to include"
-											},
-											"compilerOptions": {
-												"type": "array",
-												"items": {
-													"type": "object",
-													"required": ["name", "value"],
-													"properties": {
-														"name": {
-															"type": "string",
-															"description": "Option name"
-														},
-														"value": {
-															"type": ["string", "boolean", "number"],
-															"description": "Option value"
-														}
-													}
-												},
-												"description": "Compiler options to set"
-											}
-										},
-										"additionalProperties": false
-									},
-									{
-										"required": ["filename", "content"],
-										"properties": {
-											"action": {
-												"type": "string",
-												"enum": ["append_file"],
-												"description": "Action to append content to a file"
-											},
-											"filename": {
-												"type": "string",
-												"description": "Target filename"
-											},
-											"content": {
-												"type": "string",
-												"description": "Content to append"
-											}
-										},
-										"additionalProperties": false
-									}
-								]
-							}
-						]
-					},
-					"minItems": 1,
-					"description": "Steps to create a new project"
-				}
-			},
-			"additionalProperties": false
-		}
-	},
-	"additionalProperties": false
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agentuity.dev/rules.schema.json",
+  "title": "Agentuity Project Rules",
+  "description": "Configuration rules for Agentuity projects",
+  "type": "object",
+  "required": [
+    "identifier",
+    "language",
+    "runtime",
+    "src_dir",
+    "filename",
+    "bundle",
+    "development",
+    "deployment",
+    "new_agent",
+    "new_project"
+  ],
+  "properties": {
+    "identifier": {
+      "type": "string",
+      "description": "Unique identifier for the runtime"
+    },
+    "language": {
+      "type": "string",
+      "enum": ["python", "javascript"],
+      "description": "Programming language used"
+    },
+    "runtime": {
+      "type": "string",
+      "enum": ["uv", "nodejs", "bunjs"],
+      "description": "Runtime environment"
+    },
+    "src_dir": {
+      "type": "string",
+      "description": "Source directory for agents"
+    },
+    "filename": {
+      "type": "string",
+      "description": "Default filename for agent files"
+    },
+    "bundle": {
+      "type": "object",
+      "required": ["enabled", "ignore"],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether bundling is enabled"
+        },
+        "ignore": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Patterns to ignore during bundling"
+        }
+      },
+      "additionalProperties": false
+    },
+    "development": {
+      "type": "object",
+      "required": ["port", "watch", "command", "args"],
+      "properties": {
+        "port": {
+          "type": "integer",
+          "description": "Development server port"
+        },
+        "watch": {
+          "type": "object",
+          "required": ["enabled", "files"],
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Whether file watching is enabled"
+            },
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Patterns of files to watch"
+            }
+          },
+          "additionalProperties": false
+        },
+        "command": {
+          "type": "string",
+          "description": "Development command to run"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Arguments for the development command"
+        }
+      },
+      "additionalProperties": false
+    },
+    "deployment": {
+      "type": "object",
+      "required": ["resources", "command", "args"],
+      "properties": {
+        "resources": {
+          "type": "object",
+          "required": ["memory", "cpu"],
+          "properties": {
+            "memory": {
+              "type": "string",
+              "description": "Memory resource limit"
+            },
+            "cpu": {
+              "type": "string",
+              "description": "CPU resource limit"
+            }
+          },
+          "additionalProperties": false
+        },
+        "command": {
+          "type": "string",
+          "description": "Deployment command to run"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Arguments for the deployment command"
+        }
+      },
+      "additionalProperties": false
+    },
+    "new_agent": {
+      "type": "object",
+      "required": ["steps"],
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "oneOf": [
+              {
+                "required": ["action", "filename", "from"],
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": ["create_file"],
+                    "description": "Action to create a new file"
+                  },
+                  "filename": {
+                    "type": "string",
+                    "description": "Target filename with optional template variables"
+                  },
+                  "from": {
+                    "type": "string",
+                    "description": "Source file path to copy from"
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          },
+          "minItems": 1,
+          "description": "Steps to create a new agent"
+        }
+      },
+      "additionalProperties": false
+    },
+    "new_project": {
+      "type": "object",
+      "required": ["steps"],
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "oneOf": [
+              {
+                "required": ["command", "args"],
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "Command to execute"
+                  },
+                  "args": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Arguments for the command"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "required": ["action"],
+                "oneOf": [
+                  {
+                    "required": ["filename", "from"],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "enum": ["create_file"],
+                        "description": "Action to create a new file"
+                      },
+                      "filename": {
+                        "type": "string",
+                        "description": "Target filename"
+                      },
+                      "from": {
+                        "type": "string",
+                        "description": "Source file path"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "required": ["filename", "template"],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "enum": ["create_file"],
+                        "description": "Action to create a new file"
+                      },
+                      "filename": {
+                        "type": "string",
+                        "description": "Target filename"
+                      },
+                      "template": {
+                        "type": "string",
+                        "description": "Template file path"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "required": ["files"],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "enum": ["delete_file"],
+                        "description": "Action to delete files"
+                      },
+                      "files": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Files to delete"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "required": ["from", "to", "filter"],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "enum": ["copy_dir"],
+                        "description": "Action to copy a directory"
+                      },
+                      "from": {
+                        "type": "string",
+                        "description": "Source directory path"
+                      },
+                      "to": {
+                        "type": "string",
+                        "description": "Target directory path"
+                      },
+                      "filter": {
+                        "type": "string",
+                        "description": "File pattern to filter"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "required": [
+                      "script",
+                      "main",
+                      "type",
+                      "name",
+                      "version",
+                      "description",
+                      "keywords"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "enum": ["modify_package_json"],
+                        "description": "Action to modify package.json"
+                      },
+                      "script": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": ["name", "value"],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Script name"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "Script command"
+                            }
+                          }
+                        },
+                        "description": "Scripts to add"
+                      },
+                      "main": {
+                        "type": "string",
+                        "description": "Main entry point"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "Package type"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Package name"
+                      },
+                      "version": {
+                        "type": "string",
+                        "description": "Package version"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Package description"
+                      },
+                      "keywords": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Package keywords"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "required": ["types", "compilerOptions"],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "enum": ["modify_ts_config"],
+                        "description": "Action to modify tsconfig.json"
+                      },
+                      "types": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Types to include"
+                      },
+                      "compilerOptions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": ["name", "value"],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Option name"
+                            },
+                            "value": {
+                              "type": ["string", "boolean", "number"],
+                              "description": "Option value"
+                            }
+                          }
+                        },
+                        "description": "Compiler options to set"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  {
+                    "required": ["filename", "content"],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "enum": ["append_file"],
+                        "description": "Action to append content to a file"
+                      },
+                      "filename": {
+                        "type": "string",
+                        "description": "Target filename"
+                      },
+                      "content": {
+                        "type": "string",
+                        "description": "Content to append"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            ]
+          },
+          "minItems": 1,
+          "description": "Steps to create a new project"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
 }
