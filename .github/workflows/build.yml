@@ -1,0 +1,22 @@
+name: Build and validate
+
+on:
+  push:
+
+jobs:
+  deploy:
+    permissions:
+      contents: read
+    runs-on: blacksmith-2vcpu-ubuntu-2204
+    timeout-minutes: 5
+    name: Deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: useblacksmith/setup-node@v5
+        with:
+          cache: npm
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint
