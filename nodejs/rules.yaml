@@ -68,6 +68,10 @@ new_project:
           value: "agentuity bundle"
         - name: "start"
           value: "node --env-file .env --no-deprecation .agentuity/index.js"
+        - name: "lint"
+          value: "biome lint ."
+        - name: "format"
+          value: "biome format --write ."
       main: "index.js"
       type: "module"
       name: "{{ .Name }}"
@@ -105,9 +109,3 @@ new_project:
     - action: create_file
       filename: "biome.json"
       from: "common/js/biome.json"
-    - action: modify_package_json
-      script:
-        - name: "lint"
-          value: "biome lint ."
-        - name: "format"
-          value: "biome format --write ."
