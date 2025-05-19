@@ -97,3 +97,17 @@ new_project:
     - action: create_file
       filename: ".editorconfig"
       template: "common/editorconfig"
+    - command: npm
+      args:
+        - install
+        - "@biomejs/biome"
+        - -D
+    - action: create_file
+      filename: "biome.json"
+      from: "common/js/biome.json"
+    - action: modify_package_json
+      script:
+        - name: "lint"
+          value: "biome lint ."
+        - name: "format"
+          value: "biome format --write ."
