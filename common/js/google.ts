@@ -2,7 +2,11 @@ import type { AgentRequest, AgentResponse, AgentContext } from '@agentuity/sdk';
 import { GoogleGenAI } from '@google/genai';
 
 // Get your API key here: https://aistudio.google.com/apikey
-const google = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY! });
+if (!process.env.GOOGLE_API_KEY) {
+   console.error("Missing the GOOGLE_API_KEY environment variable");
+   process.exit(1);
+}
+const google = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
 
 export const welcome = () => {
   return {
