@@ -24,6 +24,7 @@ deployment:
   resources:
     memory: 250Mi
     cpu: 500M
+    disk: 150Mi
   command: uv
   args:
     - run
@@ -39,7 +40,7 @@ new_project:
       args:
         - venv
         - --python
-        - ">=3.10,<=3.12"
+        - ">=3.10,<3.13"
     - command: uv
       args:
         - init
@@ -47,7 +48,7 @@ new_project:
         - "{{ .Name | safe_filename }}"
         - --no-package
         - --python
-        - ">=3.10,<=3.12"
+        - ">=3.10,<3.13"
         - --description
         - "{{ .Description }}"
         - --no-readme

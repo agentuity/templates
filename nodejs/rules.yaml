@@ -25,6 +25,7 @@ deployment:
   resources:
     memory: 250Mi
     cpu: 500M
+    disk: 100Mi
   command: node
   args:
     - --disable-sigusr1

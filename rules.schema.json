@@ -103,7 +103,7 @@
       "properties": {
         "resources": {
           "type": "object",
-          "required": ["memory", "cpu"],
+          "required": ["memory", "cpu", "disk"],
           "properties": {
             "memory": {
               "type": "string",
@@ -112,6 +112,10 @@
             "cpu": {
               "type": "string",
               "description": "CPU resource limit"
+            },
+            "disk": {
+              "type": "string",
+              "description": "Disk resource limit"
             }
           },
           "additionalProperties": false
