@@ -20,6 +20,8 @@ development:
   args:
     - run
     - --silent
+    - --env-file=.env
+    - --env-file=.env.development
     - .agentuity/index.js
 deployment:
   resources:

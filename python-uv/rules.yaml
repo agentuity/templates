@@ -19,6 +19,8 @@ development:
     - run
     - --env-file
     - .env
+    - --env-file
+    - .env.development
     - server.py
 deployment:
   resources:
