@@ -17,7 +17,7 @@ def welcome():
         ]
     }
 
-agent = AgentWorkflow.from_tools_or_functions(
+client = AgentWorkflow.from_tools_or_functions(
     [],
     llm=OpenAI(model="gpt-4o-mini"),
     system_prompt="You are a helpful assistant that provides concise and accurate information.",
@@ -25,7 +25,7 @@ agent = AgentWorkflow.from_tools_or_functions(
 
 async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
     try:
-        result = await agent.run(await request.data.text() or "Hello, OpenAI")
+        result = await client.run(await request.data.text() or "Hello, OpenAI")
 
         return response.text(str(result))
     except Exception as e:

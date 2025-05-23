@@ -1,7 +1,7 @@
 import type { AgentContext, AgentRequest, AgentResponse } from '@agentuity/sdk';
 import Anthropic from '@anthropic-ai/sdk';
 
-const anthropic = new Anthropic();
+const client = new Anthropic();
 
 export const welcome = () => {
   return {
@@ -26,7 +26,7 @@ export default async function Agent(
   ctx: AgentContext
 ) {
   try {
-    const result = await anthropic.messages.create({
+    const result = await client.messages.create({
       model: 'claude-3-7-sonnet-latest',
       max_tokens: 1024,
       messages: [

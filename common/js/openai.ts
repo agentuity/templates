@@ -1,7 +1,7 @@
 import type { AgentContext, AgentRequest, AgentResponse } from '@agentuity/sdk';
 import OpenAI from 'openai';
 
-const openai = new OpenAI();
+const client = new OpenAI();
 
 export const welcome = () => {
   return {
@@ -26,7 +26,7 @@ export default async function Agent(
   ctx: AgentContext
 ) {
   try {
-    const result = await openai.chat.completions.create({
+    const result = await client.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
         {

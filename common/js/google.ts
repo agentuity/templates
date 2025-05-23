@@ -8,7 +8,7 @@ if (!process.env.GOOGLE_API_KEY) {
   process.exit(1);
 }
 
-const google = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
+const client = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
 
 export const welcome = () => {
   return {
@@ -33,7 +33,7 @@ export default async function Agent(
   ctx: AgentContext
 ) {
   try {
-    const result = await google.models.generateContent({
+    const result = await client.models.generateContent({
       model: 'gemini-2.0-flash',
       contents: (await req.data.text()) ?? 'Hello, Gemini',
     });
