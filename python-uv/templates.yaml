@@ -9,7 +9,7 @@
         - openai
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
-      from: "common/py/openai/openai.py"
+      from: "common/py/openai.py"
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
@@ -37,7 +37,7 @@
         - anthropic
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
-      from: "common/py/anthropic/anthropic.py"
+      from: "common/py/anthropic.py"
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
@@ -51,7 +51,7 @@
         - google-genai
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
-      from: "common/py/google/google.py"
+      from: "common/py/google.py"
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"

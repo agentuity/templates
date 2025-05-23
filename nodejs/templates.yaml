@@ -10,7 +10,7 @@
         - openai
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
-      from: "common/js/openai/openai.ts"
+      from: "common/js/openai.ts"
 - name: "Anthropic"
   description: "Official TypeScript library for the Anthropic SDK."
   steps:
@@ -22,7 +22,7 @@
         - "@anthropic-ai/sdk"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
-      from: "common/js/anthropic/anthropic.ts"
+      from: "common/js/anthropic.ts"
 - name: "Google GenAI"
   description: "Official TypeScript library for the Google Generative AI SDK."
   steps:
@@ -34,7 +34,7 @@
         - "@google/genai"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
-      from: "common/js/google/google.ts"
+      from: "common/js/google.ts"
 - name: "Vercel AI SDK + OpenAI"
   description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the OpenAI provider."
   steps:
