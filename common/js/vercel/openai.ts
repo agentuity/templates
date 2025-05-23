@@ -1,6 +1,6 @@
-import type { AgentRequest, AgentResponse, AgentContext } from '@agentuity/sdk';
-import { generateText } from 'ai';
+import type { AgentContext, AgentRequest, AgentResponse } from '@agentuity/sdk';
 import { openai } from '@ai-sdk/openai';
+import { generateText } from 'ai';
 
 export const welcome = () => {
   return {
@@ -8,11 +8,11 @@ export const welcome = () => {
       "Welcome to the Vercel AI SDK with OpenAI Agent! I can help you build AI-powered applications using Vercel's AI SDK with OpenAI models.",
     prompts: [
       {
-        data: 'How do I implement streaming responses with the Vercel AI SDK?',
+        data: 'How do I implement streaming responses with OpenAI models?',
         contentType: 'text/plain',
       },
       {
-        data: 'Generate a poem about artificial intelligence',
+        data: 'What are the best practices for prompt engineering with OpenAI?',
         contentType: 'text/plain',
       },
     ],
@@ -22,12 +22,20 @@ export const welcome = () => {
 export default async function Agent(
   req: AgentRequest,
   resp: AgentResponse,
-  ctx: AgentContext
+  ctx: AgentContext,
 ) {
-  const res = await generateText({
-    model: openai('gpt-4o'),
-    system: 'You are a friendly assistant!',
-    prompt: (await req.data.text()) ?? 'Why is the sky blue?',
-  });
-  return resp.text(res.text);
+  try {
+    const result = await generateText({
+      model: openai('gpt-4o-mini'),
+      system:
+        'You are a helpful assistant that provides concise and accurate information.',
+      prompt: (await req.data.text()) ?? 'Hello, OpenAI',
+    });
+
+    return resp.text(result.text);
+  } catch (error) {
+    ctx.logger.error('Error running agent:', error);
+
+    return resp.text('Sorry, there was an error processing your request.');
+  }
 }

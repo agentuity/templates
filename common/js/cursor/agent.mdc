@@ -19,7 +19,7 @@ alwaysApply: true
 import type { AgentRequest, AgentResponse, AgentContext } from "@agentuity/sdk";
 
 export default async function Agent(req: AgentRequest, resp: AgentResponse, ctx: AgentContext) {
-	return resp.json({"hello":"world"});
+	return resp.json({'hello': 'world'});
 }
 ```
 

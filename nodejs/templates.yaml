@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/agentuity/templates/main/templates.schema.json
-- name: "OpenAI SDK for Typescript"
-  description: "Official TypeScript library for the OpenAI"
+- name: "OpenAI"
+  description: "Official TypeScript library for the OpenAI SDK."
   steps:
     - command: npm
       args:
@@ -10,9 +10,9 @@
         - openai
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
-      from: "common/js/openai.ts"
-- name: "Anthropic SDK for Typescript"
-  description: "Official TypeScript library for the Anthropic"
+      from: "common/js/openai/openai.ts"
+- name: "Anthropic"
+  description: "Official TypeScript library for the Anthropic SDK."
   steps:
     - command: npm
       args:
@@ -22,9 +22,9 @@
         - "@anthropic-ai/sdk"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
-      from: "common/js/anthropic.ts"
-- name: "Google AI SDK for Typescript"
-  description: "Official TypeScript library for the Google AI"
+      from: "common/js/anthropic/anthropic.ts"
+- name: "Google GenAI"
+  description: "Official TypeScript library for the Google Generative AI SDK."
   steps:
     - command: npm
       args:
@@ -34,9 +34,9 @@
         - "@google/genai"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
-      from: "common/js/google.ts"
-- name: "Vercel AI SDK with OpenAI"
-  description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the OpenAI provider using the Vercel AI SDK."
+      from: "common/js/google/google.ts"
+- name: "Vercel AI SDK + OpenAI"
+  description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the OpenAI provider."
   steps:
     - command: npm
       args:
@@ -48,8 +48,8 @@
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/vercel/openai.ts"
-- name: "Vercel AI SDK with Anthropic"
-  description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the Anthropic provider using the Vercel AI SDK."
+- name: "Vercel AI SDK + Anthropic"
+  description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the Anthropic provider."
   steps:
     - command: npm
       args:
@@ -61,8 +61,8 @@
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/vercel/anthropic.ts"
-- name: "Vercel AI SDK with Google"
-  description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the Google provider using the Vercel AI SDK."
+- name: "Vercel AI SDK + Google"
+  description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the Google provider."
   steps:
     - command: npm
       args:
@@ -73,9 +73,9 @@
         - "@ai-sdk/google"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
-      from: "common/js/vercel/google.ts"         
-- name: "Vercel AI SDK with Groq"
-  description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the Groq provider using the Vercel AI SDK."
+      from: "common/js/vercel/google.ts"
+- name: "Vercel AI SDK + Groq"
+  description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the Groq provider."
   steps:
     - command: bun
       args:
@@ -85,8 +85,8 @@
         - "@ai-sdk/groq"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
-      from: "common/js/vercel/groq.ts"      
-- name: "Mastra TypeScript Agent Framework"
+      from: "common/js/vercel/groq.ts"
+- name: "Mastra"
   description: "Mastra is a TypeScript agent framework that provides primitives to build AI applications and features."
   steps:
     - command: npm

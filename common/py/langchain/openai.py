@@ -3,36 +3,41 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-llm = ChatOpenAI()
+client = ChatOpenAI(model="gpt-4o-mini")
 
-
-def welcome():  
-    return {  
-        "welcome": "Welcome to the LangChain Agent with OpenAI! I can help you build powerful language processing chains using LangChain and OpenAI models.",  
-        "prompts": [  
-            {  
-                "data": "Create a summarization chain for a long document",  
-                "contentType": "text/plain"  
-            },  
-            {  
-                "data": "How can I use LangChain with vector databases for retrieval?",  
-                "contentType": "text/plain"  
-            }  
-        ]  
-    } 
+def welcome():
+    return {
+        "welcome": "Welcome to the LangChain Agent with OpenAI! I can help you build AI-powered applications using LangChain and OpenAI models.",
+        "prompts": [
+            {
+                "data": "How do I use LangChain to call OpenAI models?",
+                "contentType": "text/plain"
+            },
+            {
+                "data": "What are the best practices for prompt engineering with LangChain?",
+                "contentType": "text/plain"
+            }
+        ]
+    }
 
 async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
-    prompt = ChatPromptTemplate.from_messages(
-        [
-            (
-                "system",
-                "You are an expert in world knowledge and all things in general.",
-            ),
-            ("user", "{input}"),
-        ]
-    )
-    output_parser = StrOutputParser()
-    chain = prompt | llm | output_parser
-    result = await chain.ainvoke({"input": await request.data.text() or "Tell me about AI"})
+    try:
+        prompt = ChatPromptTemplate.from_messages(
+                [
+                    (
+                    "system",
+                    "You are a helpful assistant that provides concise and accurate information.",
+                ),
+                ("user", "{input}"),
+            ]
+        )
+        output_parser = StrOutputParser()
+        chain = prompt | client | output_parser
 
-    return response.text(result)
+        result = await chain.ainvoke({"input": await request.data.text() or "Tell me about AI"})
+
+        return response.text(result)
+    except Exception as e:
+        context.logger.error(f"Error running agent: {e}")
+
+        return response.text("Sorry, there was an error processing your request.")

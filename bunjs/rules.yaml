@@ -90,8 +90,9 @@ new_project:
     - action: append_file
       filename: ".gitignore"
       content: |
-        # don't commit the agentuity build folder
+        # Agentuity
         .agentuity
+        .agentuity-crash-*.json
     - action: create_file
       filename: "index.ts"
       from: "common/js/boot.ts"

@@ -1,35 +1,41 @@
-from openai import AsyncOpenAI
 from agentuity import AgentRequest, AgentResponse, AgentContext
+from openai import AsyncOpenAI
 
-client = AsyncOpenAI()
+client = AsyncOpenAI(model="gpt-4o-mini")
 
-def welcome():  
-    return {  
-        "welcome": "Welcome to the OpenAI Agent! I can help you interact with OpenAI models.",  
-        "prompts": [  
-            {  
-                "data": "Generate a creative story about a robot learning to paint",  
-                "contentType": "text/plain"  
-            },  
-            {  
-                "data": "What capabilities does GPT-4 have?",  
-                "contentType": "text/plain"  
-            }  
-        ]  
-    }  
+def welcome():
+    return {
+        "welcome": "Welcome to the OpenAI Python Agent! I can help you build AI-powered applications using OpenAI models.",
+        "prompts": [
+            {
+                "data": "How do I implement streaming responses with OpenAI models?",
+                "contentType": "text/plain"
+            },
+            {
+                "data": "What are the best practices for prompt engineering with OpenAI?",
+                "contentType": "text/plain"
+            }
+        ]
+    }
 
 async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
-    chat_completion = await client.chat.completions.create(
-        messages=[
-            {
-                "role": "system",
-                "content": "You are a friendly assistant!",
-            },
-            {
-                "role": "user",
-                "content": await request.data.text() or "Why is the sky blue?",
-            },
-        ],
-        model="gpt-4o",
-    )
-    return response.text(chat_completion.choices[0].message.content)
+    try:
+        result = await client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                    {
+                    "role": "system",
+                    "content": "You are a helpful assistant that provides concise and accurate information.",
+                },
+                {
+                    "role": "user",
+                    "content": await request.data.text() or "Hello, OpenAI",
+                },
+            ],
+        )
+
+        return response.text(result.choices[0].message.content)
+    except Exception as e:
+        context.logger.error(f"Error running agent: {e}")
+
+        return response.text("Sorry, there was an error processing your request.")

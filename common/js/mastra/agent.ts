@@ -1,6 +1,6 @@
-import type { AgentRequest, AgentResponse, AgentContext } from '@agentuity/sdk';
-import { Agent } from '@mastra/core/agent';
+import type { AgentContext, AgentRequest, AgentResponse } from '@agentuity/sdk';
 import { openai } from '@ai-sdk/openai';
+import { Agent } from '@mastra/core/agent';
 
 export const welcome = () => {
   return {
@@ -22,22 +22,24 @@ export const welcome = () => {
 export default async function AgentuityAgent(
   req: AgentRequest,
   resp: AgentResponse,
-  ctx: AgentContext
+  ctx: AgentContext,
 ) {
   try {
     const agent = new Agent({
       name: '{{ .AgentName }}',
+      model: openai('gpt-4o-mini'),
       instructions:
         'You are a helpful assistant that provides concise and accurate information.',
-      model: openai('gpt-4o-mini'),
     });
 
     const result = await agent.generate(
-      (await req.data.text()) || 'Hello, who are you?'
+      (await req.data.text()) || 'Hello, Mastra',
     );
-    return resp.text(result.text);
+
+    return resp.text(result.text ?? 'Something went wrong');
   } catch (error) {
     ctx.logger.error('Error running agent:', error);
+
     return resp.text('Sorry, there was an error processing your request.');
   }
 }

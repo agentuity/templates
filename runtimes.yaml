@@ -14,8 +14,8 @@
         command: bun
         args:
           - upgrade
-- name: "NodeJS"
-  description: "NodeJS is a runtime for JavaScript and TypeScript."
+- name: "Node.js"
+  description: "Node.js is a runtime for JavaScript and TypeScript."
   identifier: "nodejs"
   language: "javascript"
   requirements:
@@ -25,8 +25,8 @@
       version: ">=22"
       brew: node@22
       url: https://nodejs.org/en/download
-- name: "Python with uv"
-  description: "Python with the extremely fast Python package and project manager, uv."
+- name: "Python + uv"
+  description: "Python with uv, the extremely fast Python package and project manager."
   identifier: "python-uv"
   language: "python"
   requirements:

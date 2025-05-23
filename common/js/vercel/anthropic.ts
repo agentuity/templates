@@ -1,6 +1,6 @@
-import type { AgentRequest, AgentResponse, AgentContext } from '@agentuity/sdk';
-import { generateText } from 'ai';
+import type { AgentContext, AgentRequest, AgentResponse } from '@agentuity/sdk';
 import { anthropic } from '@ai-sdk/anthropic';
+import { generateText } from 'ai';
 
 export const welcome = () => {
   return {
@@ -22,12 +22,20 @@ export const welcome = () => {
 export default async function Agent(
   req: AgentRequest,
   resp: AgentResponse,
-  ctx: AgentContext
+  ctx: AgentContext,
 ) {
-  const res = await generateText({
-    model: anthropic('claude-3-5-sonnet-latest'),
-    system: 'You are a friendly assistant!',
-    prompt: (await req.data.text()) ?? 'Why is the sky blue?',
-  });
-  return resp.text(res.text);
+  try {
+    const result = await generateText({
+      model: anthropic('claude-3-7-sonnet-latest'),
+      system:
+        'You are a helpful assistant that provides concise and accurate information.',
+      prompt: (await req.data.text()) ?? 'Hello, Claude',
+    });
+
+    return resp.text(result.text);
+  } catch (error) {
+    ctx.logger.error('Error running agent:', error);
+
+    return resp.text('Sorry, there was an error processing your request.');
+  }
 }
