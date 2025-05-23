@@ -37,7 +37,11 @@ export default async function Agent(
       ],
     });
 
-    return resp.text(result.content[0].text ?? 'Something went wrong');
+    if (result.content[0]?.type === 'text') {
+      return resp.text(result.content[0].text ?? 'Something went wrong');
+    }
+
+    return resp.text('Something went wrong');
   } catch (error) {
     ctx.logger.error('Error running agent:', error);
 

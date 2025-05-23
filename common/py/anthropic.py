@@ -31,7 +31,10 @@ async def run(request: AgentRequest, response: AgentResponse, context: AgentCont
             ],
         )
 
-        return response.text(result.content[0].text)
+        if result.content[0].type == "text":
+            return response.text(result.content[0].text)
+        else:
+            return response.text("Something went wrong")
     except Exception as e:
         context.logger.error(f"Error running agent: {e}")
 
