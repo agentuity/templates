@@ -4,9 +4,15 @@
   steps:
     - command: npm
       args:
+        - cache
+        - clean
+        - --force
+    - command: npm
+      args:
         - install
         - --no-fund
         - --no-audit
+        - --force
         - openai
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
@@ -16,9 +22,15 @@
   steps:
     - command: npm
       args:
+        - cache
+        - clean
+        - --force
+    - command: npm
+      args:
         - install
         - --no-fund
         - --no-audit
+        - --force
         - "@anthropic-ai/sdk"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
@@ -28,9 +40,15 @@
   steps:
     - command: npm
       args:
+        - cache
+        - clean
+        - --force
+    - command: npm
+      args:
         - install
         - --no-fund
         - --no-audit
+        - --force
         - "@google/genai"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
@@ -40,9 +58,15 @@
   steps:
     - command: npm
       args:
+        - cache
+        - clean
+        - --force
+    - command: npm
+      args:
         - install
         - --no-fund
         - --no-audit
+        - --force
         - ai
         - "@ai-sdk/openai"
     - action: create_file
@@ -53,9 +77,15 @@
   steps:
     - command: npm
       args:
+        - cache
+        - clean
+        - --force
+    - command: npm
+      args:
         - install
         - --no-fund
         - --no-audit
+        - --force
         - ai
         - "@ai-sdk/anthropic"
     - action: create_file
@@ -66,9 +96,15 @@
   steps:
     - command: npm
       args:
-      - install
+        - cache
+        - clean
+        - --force
+    - command: npm
+      args:
+        - install
         - --no-fund
         - --no-audit
+        - --force
         - ai
         - "@ai-sdk/google"
     - action: create_file
@@ -91,9 +127,15 @@
   steps:
     - command: npm
       args:
+        - cache
+        - clean
+        - --force
+    - command: npm
+      args:
         - install
         - --no-fund
         - --no-audit
+        - --force
         - mastra
         - "@mastra/core"
         - "@ai-sdk/openai"

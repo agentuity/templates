@@ -47,16 +47,36 @@ new_project:
       args:
         - init
         - --yes
+    - command: rm
+      args:
+        - -rf
+        - "$HOME/.npm/_cacache/tmp/*"
+    - command: npm
+      args:
+        - cache
+        - clean
+        - --force
     - command: npm
       args:
         - install
+        - --force
         - "@agentuity/sdk@latest"
+    - command: rm
+      args:
+        - -rf
+        - "$HOME/.npm/_cacache/tmp/*"
+    - command: npm
+      args:
+        - cache
+        - clean
+        - --force
     - command: npm
       args:
         - install
+        - --force
+        - -D
         - typescript
         - "@types/node"
-        - -D
     - action: delete_file
       files:
         - "index.ts"
@@ -103,11 +123,21 @@ new_project:
     - action: create_file
       filename: ".editorconfig"
       template: "common/editorconfig"
+    - command: rm
+      args:
+        - -rf
+        - "$HOME/.npm/_cacache/tmp/*"
+    - command: npm
+      args:
+        - cache
+        - clean
+        - --force
     - command: npm
       args:
         - install
-        - "@biomejs/biome"
+        - --force
         - -D
+        - "@biomejs/biome"
     - action: create_file
       filename: "biome.json"
       from: "common/js/biome.json"
