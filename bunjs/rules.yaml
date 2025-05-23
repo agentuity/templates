@@ -92,8 +92,9 @@ new_project:
     - action: append_file
       filename: ".gitignore"
       content: |
-        # don't commit the agentuity build folder
+        # Agentuity
         .agentuity
+        .agentuity-crash-*.json
         .env.development
         .env.production
     - action: create_file

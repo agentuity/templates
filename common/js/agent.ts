@@ -1,9 +1,9 @@
-import type { AgentRequest, AgentResponse, AgentContext } from '@agentuity/sdk';
+import type { AgentContext, AgentRequest, AgentResponse } from '@agentuity/sdk';
 
 export default async function Agent(
   req: AgentRequest,
   resp: AgentResponse,
   ctx: AgentContext
 ) {
-  return resp.text('Hi from Agentuity!');
+  return resp.text('Hello from Agentuity!');
 }

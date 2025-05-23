@@ -9,7 +9,7 @@
 
 # Agentuity Project Templates
 
-These are templates for Agentuity projects. They are designed to help you get started with building your own Agents using the Agentuity Cloud Platform. 
+These are templates for Agentuity projects. They are designed to help you get started with building your own Agents using the Agentuity Cloud Platform.
 
 These templates are automatically available when using the `agentuity new` command from the [Agentuity CLI](https://github.com/agentuity/cli).
 

@@ -1,9 +1,9 @@
 ---
 description: Guidelines for the Agentuity AI Configuration file
 globs: "agentuity.yaml"
-alwaysApply: true 
+alwaysApply: true
 ---
 
 # Agentuity Configuration File
 
-This file is used by agentuity to configure the AI Agent project.  You should NOT suggest edits to this file.
+This file is used by Agentuity to configure the AI Agent project. You should NOT suggest edits to this file.

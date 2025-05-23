@@ -4,9 +4,9 @@
 <br />
 </div>
 
-# 🤖 NodeJS Agent Project
+# 🤖 Node.js Agent Project
 
-Welcome to your Agentuity NodeJS Agent project! This README provides essential information to help you get started with developing, testing, and deploying your AI agents.
+Welcome to your Agentuity Node.js Agent project! This README provides essential information to help you get started with developing, testing, and deploying your AI agents.
 
 ## 📋 Prerequisites
 
@@ -76,7 +76,7 @@ Your project configuration is stored in `agentuity.yaml`. This file defines your
 You can set environment variables for your project:
 
 ```bash
-agentuity env set KEY=VALUE
+agentuity env set KEY VALUE
 ```
 
 ### Secrets Management
@@ -84,7 +84,7 @@ agentuity env set KEY=VALUE
 For sensitive information, use secrets:
 
 ```bash
-agentuity env set --secret KEY=VALUE
+agentuity env set --secret KEY VALUE
 ```
 
 ## 📖 Documentation

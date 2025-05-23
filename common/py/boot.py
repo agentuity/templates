@@ -1,7 +1,7 @@
+from agentuity import autostart
 import logging
 import os
 import sys
-from agentuity import autostart
 
 if __name__ == "__main__":
     # Check if AGENTUITY_API_KEY is set
@@ -23,7 +23,7 @@ if __name__ == "__main__":
             "\033[31m[WARN] You are running this agent outside of the Agentuity environment. Any automatic Agentuity features will be disabled.\033[0m"
         )
         print(
-            "\033[31m[WARN] Recommend running `agentuity dev` to run your project locally instead of python script.\033[0m"
+            "\033[31m[WARN] Recommend running `agentuity dev` to run your project locally instead of `python script`.\033[0m"
         )
 
     # Setup logging after environment checks

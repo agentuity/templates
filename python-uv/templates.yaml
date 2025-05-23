@@ -14,7 +14,7 @@
       filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "LiteLLM"
-  description: "LiteLLM Python SDK"
+  description: "LiteLLM is a Python SDK for building AI agents."
   steps:
     - command: uv
       args:
@@ -28,7 +28,7 @@
       filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "Anthropic"
-  description: "Anthropic Python SDK"
+  description: "Official Python library for the Anthropic SDK."
   steps:
     - command: uv
       args:
@@ -42,7 +42,7 @@
       filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "Google GenAI"
-  description: "Google Generative AI Python SDK"
+  description: "Official Python library for the Google Generative AI SDK."
   steps:
     - command: uv
       args:
@@ -56,7 +56,7 @@
       filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "LangChain"
-  description: "LangChain Python SDK with OpenAI"
+  description: "LangChain is a Python SDK for building AI agents."
   steps:
     - command: uv
       args:
@@ -72,14 +72,14 @@
       filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "LlamaIndex"
-  description: "LlamaIndex Python SDK with OpenAI"
+  description: "LlamaIndex is a Python SDK for building AI agents."
   steps:
     - command: uv
       args:
         - add
         - --quiet
-        - llama-index==0.12.33
-        - llama-index-core==0.12.33
+        - llama-index==0.12.37
+        - llama-index-core==0.12.37
     - action: create_file
       filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/llamaindex/openai.py"
@@ -87,7 +87,7 @@
       filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "CrewAI"
-  description: "CrewAI Python SDK"
+  description: "CrewAI is a Python SDK for building AI agents."
   steps:
     - command: uv
       args:
@@ -107,7 +107,7 @@
       from: "common/py/crewai/config"
       to: "agents/{{ .AgentName | safe_filename }}/config"
 - name: "PydanticAI"
-  description: "PydanticAI Python SDK"
+  description: "PydanticAI is a Python SDK for building AI agents."
   steps:
     - command: uv
       args:
