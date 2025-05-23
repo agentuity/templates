@@ -121,3 +121,6 @@ new_project:
     - action: create_file
       filename: "biome.json"
       from: "common/js/biome.json"
+    - action: create_file
+      filename: ".env.development"
+      from: "common/env.development"
