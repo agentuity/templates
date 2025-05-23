@@ -12,7 +12,7 @@ client = genai.Client(api_key=api_key)
 
 def welcome():
     return {
-        "welcome": "Welcome to the Google AI TypeScript Agent! I can help you build AI-powered applications using Gemini models.",
+        "welcome": "Welcome to the Google AI Python Agent! I can help you build AI-powered applications using Gemini models.",
         "prompts": [
             {
                 "data": "How do I implement streaming responses with Gemini models?",
