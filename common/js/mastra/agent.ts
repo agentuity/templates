@@ -22,7 +22,7 @@ export const welcome = () => {
 export default async function AgentuityAgent(
   req: AgentRequest,
   resp: AgentResponse,
-  ctx: AgentContext,
+  ctx: AgentContext
 ) {
   try {
     const agent = new Agent({
@@ -33,7 +33,7 @@ export default async function AgentuityAgent(
     });
 
     const result = await agent.generate(
-      (await req.data.text()) || 'Hello, Mastra',
+      (await req.data.text()) || 'Hello, Mastra'
     );
 
     return resp.text(result.text ?? 'Something went wrong');

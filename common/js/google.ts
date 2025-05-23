@@ -30,7 +30,7 @@ export const welcome = () => {
 export default async function Agent(
   req: AgentRequest,
   resp: AgentResponse,
-  ctx: AgentContext,
+  ctx: AgentContext
 ) {
   try {
     const result = await google.models.generateContent({

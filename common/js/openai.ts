@@ -23,7 +23,7 @@ export const welcome = () => {
 export default async function Agent(
   req: AgentRequest,
   resp: AgentResponse,
-  ctx: AgentContext,
+  ctx: AgentContext
 ) {
   try {
     const result = await openai.chat.completions.create({
@@ -37,7 +37,7 @@ export default async function Agent(
     });
 
     return resp.text(
-      result.choices[0]?.message.content ?? 'Something went wrong',
+      result.choices[0]?.message.content ?? 'Something went wrong'
     );
   } catch (error) {
     ctx.logger.error('Error running agent:', error);
