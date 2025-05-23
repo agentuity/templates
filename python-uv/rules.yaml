@@ -19,6 +19,8 @@ development:
     - run
     - --env-file
     - .env
+    - --env-file
+    - .env.development
     - server.py
 deployment:
   resources:
@@ -86,3 +88,6 @@ new_project:
     - action: create_file
       filename: "agents/__init__.py"
       template: "common/py/init.py"
+    - action: create_file
+      filename: ".env.development"
+      from: "common/env.development"

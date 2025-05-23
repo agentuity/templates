@@ -19,6 +19,7 @@ development:
   command: node
   args:
     - --env-file=.env
+    - --env-file-if-exists=.env.development
     - --no-deprecation
     - .agentuity/index.js
 deployment:
@@ -110,3 +111,6 @@ new_project:
     - action: create_file
       filename: "biome.json"
       from: "common/js/biome.json"
+    - action: create_file
+      filename: ".env.development"
+      from: "common/env.development"
