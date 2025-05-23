@@ -20,6 +20,8 @@ development:
   args:
     - run
     - --silent
+    - --env-file=.env
+    - --env-file=.env.development
     - .agentuity/index.js
 deployment:
   resources:
@@ -93,6 +95,8 @@ new_project:
         # Agentuity
         .agentuity
         .agentuity-crash-*.json
+        .env.development
+        .env.production
     - action: create_file
       filename: "index.ts"
       from: "common/js/boot.ts"
@@ -118,3 +122,6 @@ new_project:
     - action: create_file
       filename: "biome.json"
       from: "common/js/biome.json"
+    - action: create_file
+      filename: ".env.development"
+      from: "common/env.development"

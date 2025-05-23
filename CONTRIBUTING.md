@@ -81,7 +81,7 @@ There are many ways you can contribute to this project:
 
 ## Questions or Need Help?
 
-- Join our [Discord community](https://discord.gg/vtn3hgUfuc)
+- Join our [Discord community](https://discord.gg/agentuity)
 - Check existing issues and discussions
 - Create a new issue for questions
 - Reach out to maintainers if needed
