@@ -50,12 +50,14 @@ new_project:
       args:
         - install
         - "@agentuity/sdk@latest"
+        - "--force"
     - command: npm
       args:
         - install
         - typescript
         - "@types/node"
         - -D
+        - "--force"
     - action: delete_file
       files:
         - "index.ts"
@@ -107,6 +109,7 @@ new_project:
         - install
         - "@biomejs/biome"
         - -D
+        - "--force"
     - action: create_file
       filename: "biome.json"
       from: "common/js/biome.json"

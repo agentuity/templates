@@ -8,6 +8,7 @@
         - --no-fund
         - --no-audit
         - openai
+        - "--force"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/openai.ts"
@@ -20,6 +21,7 @@
         - --no-fund
         - --no-audit
         - "@anthropic-ai/sdk"
+        - "--force"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/anthropic.ts"
@@ -32,6 +34,7 @@
         - --no-fund
         - --no-audit
         - "@google/genai"
+        - "--force"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/google.ts"
@@ -45,6 +48,7 @@
         - --no-audit
         - ai
         - "@ai-sdk/openai"
+        - "--force"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/vercel/openai.ts"
@@ -58,6 +62,7 @@
         - --no-audit
         - ai
         - "@ai-sdk/anthropic"
+        - "--force"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/vercel/anthropic.ts"
@@ -71,6 +76,7 @@
         - --no-audit
         - ai
         - "@ai-sdk/google"
+        - "--force"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/vercel/google.ts"         
@@ -99,6 +105,7 @@
         - "@ai-sdk/openai"
         - "ai"
         - "zod"
+        - "--force"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       template: "common/js/mastra/agent.ts"
