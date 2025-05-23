@@ -1,7 +1,7 @@
 from agentuity import AgentRequest, AgentResponse, AgentContext
 from openai import AsyncOpenAI
 
-client = AsyncOpenAI(model="gpt-4o-mini")
+client = AsyncOpenAI()
 
 def welcome():
     return {

@@ -1,6 +1,19 @@
 from agentuity import AgentRequest, AgentResponse, AgentContext
-from llama_index.core.agent.workflow import AgentWorkflow
 from llama_index.llms.openai import OpenAI
+from llama_index.core.llms import ChatMessage
+import os
+
+# TODO: Add your key via `agentuity env set --secret OPENAI_API_KEY`
+# Get your API key here: https://platform.openai.com/settings/organization/api-keys
+api_key = os.getenv("OPENAI_API_KEY")
+
+if not api_key:
+    raise ValueError("OPENAI_API_KEY environment variable not set.")
+
+client = OpenAI(
+    model="gpt-4o-mini",
+    api_key=api_key
+)
 
 def welcome():
     return {
@@ -17,15 +30,18 @@ def welcome():
         ]
     }
 
-client = AgentWorkflow.from_tools_or_functions(
-    [],
-    llm=OpenAI(model="gpt-4o-mini"),
-    system_prompt="You are a helpful assistant that provides concise and accurate information.",
-)
-
 async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
     try:
-        result = await client.run(await request.data.text() or "Hello, OpenAI")
+        result = client.chat([
+            ChatMessage(
+                role="system",
+                content="You are a helpful assistant that provides concise and accurate information."
+            ),
+            ChatMessage(
+                role="user",
+                content=await request.data.text() or "Hello, OpenAI"
+            )
+        ])
 
         return response.text(str(result))
     except Exception as e:

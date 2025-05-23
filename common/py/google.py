@@ -2,6 +2,7 @@ from agentuity import AgentRequest, AgentResponse, AgentContext
 from google import genai
 import os
 
+# TODO: Add your key via `agentuity env set --secret GOOGLE_API_KEY`
 # Get your API key here: https://aistudio.google.com/apikey
 api_key = os.getenv("GOOGLE_API_KEY")
 

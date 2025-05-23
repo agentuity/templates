@@ -76,7 +76,7 @@ Your project configuration is stored in `agentuity.yaml`. This file defines your
 You can set environment variables for your project:
 
 ```bash
-agentuity env set KEY=VALUE
+agentuity env set KEY VALUE
 ```
 
 ### Secrets Management
@@ -84,7 +84,7 @@ agentuity env set KEY=VALUE
 For sensitive information, use secrets:
 
 ```bash
-agentuity env set --secret KEY=VALUE
+agentuity env set --secret KEY VALUE
 ```
 
 ## 📖 Documentation

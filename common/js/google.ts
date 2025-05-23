@@ -1,6 +1,7 @@
 import type { AgentContext, AgentRequest, AgentResponse } from '@agentuity/sdk';
 import { GoogleGenAI } from '@google/genai';
 
+// TODO: Add your key via `agentuity env set --secret GOOGLE_API_KEY`
 // Get your API key here: https://aistudio.google.com/apikey
 if (!process.env.GOOGLE_API_KEY) {
   console.error('Missing the GOOGLE_API_KEY environment variable');

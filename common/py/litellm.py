@@ -6,7 +6,7 @@ def welcome():
         "welcome": "Welcome to the LiteLLM Agent! I can help you interact with various LLM providers through a unified interface.",
         "prompts": [
             {
-                "data": "Generate a response using OpenAI's GPT-4o-mini model",
+                "data": "How do I implement streaming responses with OpenAI models?",
                 "contentType": "text/plain"
             },
             {
