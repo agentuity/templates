@@ -49,15 +49,15 @@ new_project:
     - command: npm
       args:
         - install
-        - "@agentuity/sdk@latest"
         - "--force"
+        - "@agentuity/sdk@latest"
     - command: npm
       args:
         - install
+        - "--force"
+        - -D
         - typescript
         - "@types/node"
-        - -D
-        - "--force"
     - action: delete_file
       files:
         - "index.ts"
@@ -107,9 +107,9 @@ new_project:
     - command: npm
       args:
         - install
-        - "@biomejs/biome"
-        - -D
         - "--force"
+        - -D
+        - "@biomejs/biome"
     - action: create_file
       filename: "biome.json"
       from: "common/js/biome.json"

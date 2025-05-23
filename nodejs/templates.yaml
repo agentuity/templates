@@ -7,8 +7,8 @@
         - install
         - --no-fund
         - --no-audit
-        - openai
         - "--force"
+        - openai
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/openai.ts"
@@ -20,8 +20,8 @@
         - install
         - --no-fund
         - --no-audit
-        - "@anthropic-ai/sdk"
         - "--force"
+        - "@anthropic-ai/sdk"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/anthropic.ts"
@@ -33,8 +33,8 @@
         - install
         - --no-fund
         - --no-audit
-        - "@google/genai"
         - "--force"
+        - "@google/genai"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/google.ts"
@@ -46,9 +46,9 @@
         - install
         - --no-fund
         - --no-audit
+        - "--force"
         - ai
         - "@ai-sdk/openai"
-        - "--force"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/vercel/openai.ts"
@@ -60,9 +60,9 @@
         - install
         - --no-fund
         - --no-audit
+        - "--force"
         - ai
         - "@ai-sdk/anthropic"
-        - "--force"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/vercel/anthropic.ts"
@@ -74,9 +74,9 @@
       - install
         - --no-fund
         - --no-audit
+        - "--force"
         - ai
         - "@ai-sdk/google"
-        - "--force"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       from: "common/js/vercel/google.ts"         
@@ -100,12 +100,12 @@
         - install
         - --no-fund
         - --no-audit
+        - "--force"
         - mastra
         - "@mastra/core"
         - "@ai-sdk/openai"
         - "ai"
         - "zod"
-        - "--force"
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       template: "common/js/mastra/agent.ts"
