@@ -27,7 +27,7 @@ deployment:
   resources:
     memory: 250Mi
     cpu: 500M
-    disk: 100Mi
+    disk: 250Mi
   command: bun
   args:
     - run
