@@ -26,7 +26,7 @@ deployment:
   resources:
     memory: 250Mi
     cpu: 500M
-    disk: 150Mi
+    disk: 300Mi
   command: uv
   args:
     - run
