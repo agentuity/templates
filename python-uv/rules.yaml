@@ -34,8 +34,7 @@ deployment:
     - server.py
   environment:
     # Disable conflicting OpenTelemetry instrumentation from LangChain
-    TRACELOOP_TRACE_CONTENT: "false"
-    OTEL_PYTHON_DISABLED_INSTRUMENTATIONS: "langchain,openai"
+    OTEL_PYTHON_DISABLED_INSTRUMENTATIONS: "langchain"
 new_agent:
   steps:
     - action: create_file
