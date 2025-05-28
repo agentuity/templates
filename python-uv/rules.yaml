@@ -20,6 +20,10 @@ development:
     - --env-file
     - .env
     - server.py
+  environment:
+    # Disable conflicting OpenTelemetry instrumentation from LangChain
+    TRACELOOP_TRACE_CONTENT: "false"
+    OTEL_PYTHON_DISABLED_INSTRUMENTATIONS: "langchain,openai"
 deployment:
   resources:
     memory: 250Mi
@@ -28,6 +32,10 @@ deployment:
   args:
     - run
     - server.py
+  environment:
+    # Disable conflicting OpenTelemetry instrumentation from LangChain
+    TRACELOOP_TRACE_CONTENT: "false"
+    OTEL_PYTHON_DISABLED_INSTRUMENTATIONS: "langchain,openai"
 new_agent:
   steps:
     - action: create_file
