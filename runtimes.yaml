@@ -9,7 +9,7 @@
         - --version
       version: ">=1.2.4"
       brew: oven-sh/bun/bun
-      url: https://bun.sh/install
+      url: https://bun.sh/
       selfupdate:
         command: bun
         args:
@@ -24,7 +24,7 @@
         - --version
       version: ">=22"
       brew: node@22
-      url: https://nodejs.org/en/download
+      url: https://nodejs.org/
 - name: "Python + uv"
   description: "Python with uv, the extremely fast Python package and project manager."
   identifier: "python-uv"
@@ -35,4 +35,4 @@
         - --version
       version: ">=0.5.25"
       brew: uv
-      url: https://docs.astral.sh/uv/getting-started/installation/
+      url: https://docs.astral.sh/uv
