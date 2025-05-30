@@ -9,7 +9,7 @@
         - --version
       version: ">=1.2.4"
       brew: oven-sh/bun/bun
-      url: https://bun.sh/
+      url: https://bun.sh
       selfupdate:
         command: bun
         args:
@@ -24,7 +24,7 @@
         - --version
       version: ">=22"
       brew: node@22
-      url: https://nodejs.org/
+      url: https://nodejs.org
 - name: "Python + uv"
   description: "Python with uv, the extremely fast Python package and project manager."
   identifier: "python-uv"
