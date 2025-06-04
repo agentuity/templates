@@ -38,7 +38,7 @@ new_agent:
       from: "common/py/agent.py"
     - action: create_file
       filename: "agents/{{ .Name | safe_filename }}/__init__.py"
-      template: "common/py/init.py"
+      from: "common/py/init.py"
 new_project:
   steps:
     - command: uv
