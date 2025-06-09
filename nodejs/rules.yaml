@@ -24,7 +24,7 @@ development:
     - .agentuity/index.js
 deployment:
   resources:
-    memory: 250Mi
+    memory: 350Mi
     cpu: 500M
     disk: 250Mi
   command: node

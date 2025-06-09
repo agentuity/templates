@@ -25,7 +25,7 @@ development:
     - .agentuity/index.js
 deployment:
   resources:
-    memory: 250Mi
+    memory: 350Mi
     cpu: 500M
     disk: 250Mi
   command: bun
@@ -82,13 +82,9 @@ new_project:
       version: "0.0.1"
       description: "{{ .Description }}"
       keywords: ["agentuity", "agent", "ai", "ai agent", "bun"]
-    - action: modify_ts_config
-      types:
-        - "@types/bun"
-        - "@agentuity/sdk"
-      compilerOptions:
-        - name: "esModuleInterop"
-          value: true
+    - action: create_file
+      filename: tsconfig.json
+      from: "bunjs/tsconfig.json"
     - action: append_file
       filename: ".gitignore"
       content: |
