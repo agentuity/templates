@@ -36,6 +36,9 @@ new_agent:
     - action: create_file
       filename: "agents/{{ .Name | safe_filename }}/agent.py"
       from: "common/py/agent.py"
+    - action: create_file
+      filename: "agents/{{ .Name | safe_filename }}/__init__.py"
+      from: "common/py/init.py"
 new_project:
   steps:
     - command: uv
