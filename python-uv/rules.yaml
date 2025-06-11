@@ -2,7 +2,7 @@
 identifier: python-uv
 language: python
 runtime: uv
-src_dir: agents
+src_dir: agentuity-agents
 filename: agent.py
 bundle:
   enabled: true
