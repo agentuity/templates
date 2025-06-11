@@ -13,7 +13,7 @@ development:
   watch:
     enabled: true
     files:
-      - "agents/**"
+      - "agentuity-agents/**"
   command: uv
   args:
     - run
@@ -34,10 +34,10 @@ deployment:
 new_agent:
   steps:
     - action: create_file
-      filename: "agents/{{ .Name | safe_filename }}/agent.py"
+      filename: "agentuity-agents/{{ .Name | safe_filename }}/agent.py"
       from: "common/py/agent.py"
     - action: create_file
-      filename: "agents/{{ .Name | safe_filename }}/__init__.py"
+      filename: "agentuity-agents/{{ .Name | safe_filename }}/__init__.py"
       from: "common/py/init.py"
 new_project:
   steps:
@@ -89,7 +89,7 @@ new_project:
       filename: ".editorconfig"
       template: "common/editorconfig"
     - action: create_file
-      filename: "agents/__init__.py"
+      filename: "agentuity-agents/__init__.py"
       template: "common/py/init.py"
     - action: create_file
       filename: ".env.development"
