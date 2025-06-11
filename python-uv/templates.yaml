@@ -8,10 +8,10 @@
         - --quiet
         - openai
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/openai.py"
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "LiteLLM"
   description: "LiteLLM is a Python SDK for building AI agents."
@@ -22,10 +22,10 @@
         - --quiet
         - litellm
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/litellm.py"
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "Anthropic"
   description: "Official Python library for the Anthropic SDK."
@@ -36,10 +36,10 @@
         - --quiet
         - anthropic
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/anthropic.py"
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "Google GenAI"
   description: "Official Python library for the Google Generative AI SDK."
@@ -50,10 +50,10 @@
         - --quiet
         - google-genai
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/google.py"
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "LangChain"
   description: "LangChain is a Python SDK for building AI agents."
@@ -66,10 +66,10 @@
         - langchain-openai
         - langchain-community
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/langchain/openai.py"
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "LlamaIndex"
   description: "LlamaIndex is a Python SDK for building AI agents."
@@ -81,10 +81,10 @@
         - llama-index==0.12.37
         - llama-index-core==0.12.37
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/llamaindex/openai.py"
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
 - name: "CrewAI"
   description: "CrewAI is a Python SDK for building AI agents."
@@ -95,17 +95,17 @@
         - --quiet
         - crewai
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/agent.py"
       template: "common/py/crewai/agent.py"
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/crew.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/crew.py"
       template: "common/py/crewai/crew.py"
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
     - action: copy_dir
       from: "common/py/crewai/config"
-      to: "agents/{{ .AgentName | safe_filename }}/config"
+      to: "agentuity-agents/{{ .AgentName | safe_filename }}/config"
 - name: "PydanticAI"
   description: "PydanticAI is a Python SDK for building AI agents."
   steps:
@@ -115,8 +115,8 @@
         - --quiet
         - pydantic_ai
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/agent.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/agent.py"
       template: "common/py/pydantic.py"
     - action: create_file
-      filename: "agents/{{ .AgentName | safe_filename }}/__init__.py"
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
