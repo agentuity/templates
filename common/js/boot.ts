@@ -3,7 +3,7 @@ import { runner } from '@agentuity/sdk';
 declare global {
   namespace NodeJS {
     interface Process {
-      isBun?: boolean;
+      isBun: boolean;
     }
   }
 }
