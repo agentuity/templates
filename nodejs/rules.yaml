@@ -7,9 +7,9 @@ filename: "index.ts"
 bundle:
   enabled: true
   ignore:
-    - "node_modules/**"
-    - "dist/**"
-    - "src/**"
+    - "**/*"
+    - "!/.agentuity/**"
+    - "!/agentuity.yaml"
 development:
   port: 3500
   watch:
