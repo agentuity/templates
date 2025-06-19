@@ -10,7 +10,7 @@ declare global {
 
 if (!process.env.AGENTUITY_API_KEY && !process.env.AGENTUITY_SDK_KEY) {
   console.error(
-    '\x1b[31m[ERROR] AGENTUITY_API_KEY or AGENTUITY_SDK_KEY is not set. This should have been set automatically by the Agentuity CLI or picked up from the .env file.\x1b[0m'
+    '\x1b[31m[ERROR] AGENTUITY_SDK_KEY is not set. This should have been set automatically by the Agentuity CLI or picked up from the .env file.\x1b[0m'
   );
 
   const cmd = process.env._ || '';
@@ -24,7 +24,7 @@ if (!process.env.AGENTUITY_API_KEY && !process.env.AGENTUITY_SDK_KEY) {
   process.exit(1);
 }
 
-if (!process.env.AGENTUITY_URL) {
+if (!process.env.AGENTUITY_TRANSPORT_URL) {
   console.warn(
     '\x1b[31m[WARN] You are running this agent outside of the Agentuity environment. Any automatic Agentuity features will be disabled.\x1b[0m'
   );
