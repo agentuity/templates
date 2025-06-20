@@ -5,7 +5,7 @@ from rizaio import Riza
 
 riza = Riza(api_key=os.getenv("RIZA_API_KEY"))
 
-async def {{ .AgentName | safe_filename }}(req: AgentRequest, resp: AgentResponse, ctx: AgentContext):
+async def agent(req: AgentRequest, resp: AgentResponse, ctx: AgentContext):
     try:
         data = await req.data.json()
         language = data.get("language", "")
@@ -47,7 +47,7 @@ async def {{ .AgentName | safe_filename }}(req: AgentRequest, resp: AgentRespons
 
 def welcome():
     return {
-        "welcome": "Welcome to the {{ .AgentName }} agent! I can execute code securely using Riza's sandbox environment. I support Python, JavaScript, TypeScript, Ruby, and PHP.",
+        "welcome": "Welcome to the Riza agent! I can execute code securely using Riza's sandbox environment. I support Python, JavaScript, TypeScript, Ruby, and PHP.",
         "prompts": [
             {
                 "data": {"language": "python", "code": "def fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        print(a)\n        a, b = b, a + b\n\nfibonacci(10)"},

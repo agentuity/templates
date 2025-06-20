@@ -5,7 +5,7 @@ const riza = new Riza({
   apiKey: process.env.RIZA_API_KEY,
 });
 
-export default async function {{ .AgentName }}(req: AgentRequest, resp: AgentResponse, ctx: AgentContext) {
+export default async function Agent(req: AgentRequest, resp: AgentResponse, ctx: AgentContext) {
   try {
     const { language, code } = await req.data.json() as { language: string; code: string };
     
@@ -24,7 +24,7 @@ export default async function {{ .AgentName }}(req: AgentRequest, resp: AgentRes
     
     try {
       const result = await riza.command.exec({
-        language: language.toUpperCase() as any,
+        language: language.toUpperCase() as "PYTHON" | "JAVASCRIPT" | "TYPESCRIPT" | "RUBY" | "PHP",
         code: code,
       });
       
@@ -50,7 +50,7 @@ export default async function {{ .AgentName }}(req: AgentRequest, resp: AgentRes
 
 export function welcome() {
   return {
-    welcome: "Welcome to the {{ .AgentName }} agent! I can execute code securely using Riza's sandbox environment. I support Python, JavaScript, TypeScript, Ruby, and PHP.",
+    welcome: "Welcome to the Riza agent! I can execute code securely using Riza's sandbox environment. I support Python, JavaScript, TypeScript, Ruby, and PHP.",
     prompts: [
       {
         data: { language: "python", code: "def fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        print(a)\n        a, b = b, a + b\n\nfibonacci(10)" },
