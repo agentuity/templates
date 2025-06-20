@@ -120,3 +120,17 @@
     - action: create_file
       filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
+- name: "NumPy"
+  description: "NumPy is a fundamental package for scientific computing with Python, providing support for arrays, matrices, and mathematical functions."
+  steps:
+    - command: uv
+      args:
+        - add
+        - --quiet
+        - numpy
+    - action: create_file
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/agent.py"
+      from: "common/py/numpy.py"
+    - action: create_file
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
