@@ -14,8 +14,8 @@ async def agent(req: AgentRequest, resp: AgentResponse, ctx: AgentContext):
         if not language or not code:
             return resp.json({"error": "Both 'language' and 'code' parameters are required"})
 
-        supported_languages = ["PYTHON", "JAVASCRIPT", "TYPESCRIPT", "RUBY", "PHP"]
-        if language.upper() not in supported_languages:
+        supported_languages = ["python", "javascript", "typescript", "ruby", "php"]
+        if language.lower() not in supported_languages:
             return resp.json({
                 "error": f"Unsupported language: {language}. Supported languages: {', '.join(supported_languages)}"
             })
@@ -24,7 +24,7 @@ async def agent(req: AgentRequest, resp: AgentResponse, ctx: AgentContext):
         
         try:
             result = riza.command.exec(
-                language=language.upper(),
+                language=language.lower(),
                 code=code
             )
             

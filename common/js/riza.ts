@@ -13,8 +13,8 @@ export default async function Agent(req: AgentRequest, resp: AgentResponse, ctx:
       return resp.json({ error: "Both 'language' and 'code' parameters are required" });
     }
 
-    const supportedLanguages = ["PYTHON", "JAVASCRIPT", "TYPESCRIPT", "RUBY", "PHP"];
-    if (!supportedLanguages.includes(language.toUpperCase())) {
+    const supportedLanguages = ["python", "javascript", "typescript", "ruby", "php"];
+    if (!supportedLanguages.includes(language.toLowerCase())) {
       return resp.json({ 
         error: `Unsupported language: ${language}. Supported languages: ${supportedLanguages.join(", ")}` 
       });
@@ -24,7 +24,7 @@ export default async function Agent(req: AgentRequest, resp: AgentResponse, ctx:
     
     try {
       const result = await riza.command.exec({
-        language: language.toUpperCase() as "PYTHON" | "JAVASCRIPT" | "TYPESCRIPT" | "RUBY" | "PHP",
+        language: language.toLowerCase() as "python" | "javascript" | "typescript" | "ruby" | "php",
         code: code,
       });
       
