@@ -95,3 +95,14 @@
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       template: "common/js/mastra/agent.ts"
+- name: "Riza"
+  description: "Riza Code Interpreter API for secure code execution. Supports Python, JavaScript, TypeScript, Ruby, and PHP in isolated sandbox environments."
+  steps:
+    - command: bun
+      args:
+        - add
+        - --silent
+        - "@riza-io/api"
+    - action: create_file
+      filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
+      from: "common/js/riza.ts"

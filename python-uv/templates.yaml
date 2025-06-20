@@ -120,3 +120,17 @@
     - action: create_file
       filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
+- name: "Riza"
+  description: "Riza Code Interpreter API for secure code execution. Supports Python, JavaScript, TypeScript, Ruby, and PHP in isolated sandbox environments."
+  steps:
+    - command: uv
+      args:
+        - add
+        - --quiet
+        - rizaio
+    - action: create_file
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/agent.py"
+      from: "common/py/riza.py"
+    - action: create_file
+      filename: "agentuity-agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
