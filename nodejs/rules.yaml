@@ -23,6 +23,8 @@ development:
     - --no-deprecation
     - .agentuity/index.js
 deployment:
+  mode:
+    type: "on-demand"
   resources:
     memory: 350Mi
     cpu: 500M
@@ -36,6 +38,7 @@ deployment:
     - --no-global-search-paths
     - --report-uncaught-exception
     - .agentuity/index.js
+  dependencies: []
 new_agent:
   steps:
     - action: create_file
