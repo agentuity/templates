@@ -24,6 +24,8 @@ development:
     - --env-file=.env.development
     - .agentuity/index.js
 deployment:
+  mode:
+    type: "on-demand"
   resources:
     memory: 350Mi
     cpu: 500M
@@ -42,6 +44,7 @@ deployment:
     - --no-addons
     - --no-deprecation
     - .agentuity/index.js
+  dependencies: []
 new_agent:
   steps:
     - action: create_file

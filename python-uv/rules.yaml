@@ -23,6 +23,8 @@ development:
     - .env.development
     - server.py
 deployment:
+  mode:
+    type: "on-demand"
   resources:
     memory: 250Mi
     cpu: 500M
@@ -31,6 +33,7 @@ deployment:
   args:
     - run
     - server.py
+  dependencies: []
 new_agent:
   steps:
     - action: create_file
