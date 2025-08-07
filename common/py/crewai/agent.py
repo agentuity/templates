@@ -1,5 +1,13 @@
 from agentuity import AgentRequest, AgentResponse, AgentContext
-from agents.{{ .AgentName | safe_filename }}.crew import MyCrew
+import os
+import sys
+
+# Add the current directory to Python path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
+
+from crew import MyCrew
 
 def welcome():
     return {
