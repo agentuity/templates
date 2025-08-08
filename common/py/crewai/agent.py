@@ -1,5 +1,5 @@
 from agentuity import AgentRequest, AgentResponse, AgentContext
-from crew import MyCrew
+from agentuity_agents.my_agent.crew import MyCrew
 
 def welcome():
     return {

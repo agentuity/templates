@@ -93,7 +93,7 @@
       args:
         - add
         - --quiet
-        - crewai
+        - crewai[tools]
     - action: create_file
       filename: "agentuity_agents/{{ .AgentName | safe_filename }}/agent.py"
       template: "common/py/crewai/agent.py"
