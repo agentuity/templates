@@ -1,5 +1,5 @@
 from agentuity import AgentRequest, AgentResponse, AgentContext
-from agentuity_agents.my_agent.crew import MyCrew
+from agentuity_agents.{{ .AgentName | safe_filename }}.crew import MyCrew
 
 def welcome():
     return {
