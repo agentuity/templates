@@ -21,7 +21,7 @@ def welcome():
 async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
     try:
         result = await client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-5-mini",
             messages=[
                     {
                     "role": "system",

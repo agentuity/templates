@@ -26,7 +26,7 @@ export default async function Agent(
 ) {
   try {
     const result = await generateText({
-      model: openai('gpt-4o-mini'),
+      model: openai('gpt-5-mini'),
       system:
         'You are a helpful assistant that provides concise and accurate information.',
       prompt: (await req.data.text()) ?? 'Hello, OpenAI',

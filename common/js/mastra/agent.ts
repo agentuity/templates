@@ -27,7 +27,7 @@ export default async function AgentuityAgent(
   try {
     const agent = new Agent({
       name: '{{ .AgentName }}',
-      model: openai('gpt-4o-mini'),
+      model: openai('gpt-5-mini'),
       instructions:
         'You are a helpful assistant that provides concise and accurate information.',
     });

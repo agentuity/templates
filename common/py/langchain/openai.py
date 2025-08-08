@@ -3,7 +3,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-client = ChatOpenAI(model="gpt-4o-mini")
+client = ChatOpenAI(model="gpt-5-mini")
 
 def welcome():
     return {
