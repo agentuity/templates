@@ -25,14 +25,17 @@ export default async function Agent(
   ctx: AgentContext
 ) {
   try {
-    const userMessage = (await req.data.text()) ?? 'Tell me about VoltAgent and its capabilities.';
+    const userMessage =
+      (await req.data.text()) ??
+      'Tell me about VoltAgent and its capabilities.';
 
     // Use AI SDK directly to demonstrate VoltAgent concepts
     // In a real VoltAgent application, you would use the VoltAgent framework
     // with proper agent orchestration, workflows, and tool integration
     const result = await streamText({
       model: openai('gpt-5-mini'),
-      system: 'You are an expert in VoltAgent, a TypeScript framework for building and orchestrating AI agents. You help users understand workflow orchestration, multi-agent systems, tool integration, memory management, observability, and building scalable AI applications. Provide detailed, practical information about VoltAgent development including code examples when appropriate.',
+      system:
+        'You are an expert in VoltAgent, a TypeScript framework for building and orchestrating AI agents. You help users understand workflow orchestration, multi-agent systems, tool integration, memory management, observability, and building scalable AI applications. Provide detailed, practical information about VoltAgent development including code examples when appropriate.',
       prompt: userMessage,
     });
 

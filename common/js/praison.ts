@@ -1,5 +1,5 @@
 import type { AgentContext, AgentRequest, AgentResponse } from '@agentuity/sdk';
-import { Agent as PraisonAgent, PraisonAIAgents } from 'praisonai';
+import { Agent as PraisonAIAgent, PraisonAIAgents } from 'praisonai';
 
 export const welcome = () => {
   return {
@@ -24,40 +24,45 @@ export default async function PraisonAgent(
   ctx: AgentContext
 ) {
   try {
-    const userMessage = (await req.data.text()) ?? 'Tell me about Praison AI and how it helps build multi-agent systems.';
+    const userMessage =
+      (await req.data.text()) ??
+      'Tell me about Praison AI and how it helps build multi-agent systems.';
 
     // Create a Praison AI agent with expertise in the framework
-    const agent = new PraisonAgent({
+    const agent = new PraisonAIAgent({
       name: 'PraisonExpert',
       instructions: `You are an expert in Praison AI, a production-ready framework for creating multi-AI agent systems. 
       You specialize in explaining self-reflection capabilities, multi-agent coordination, CrewAI and AG2 integration, 
       low-code solutions, and building complex LLM systems. Provide detailed, practical information about Praison AI 
       development including code examples when appropriate.`,
-      verbose: false
+      verbose: false,
     });
 
     // Initialize PraisonAIAgents with the single agent
     const praisonAI = new PraisonAIAgents({
       agents: [agent],
       tasks: [userMessage],
-      verbose: false
+      verbose: false,
     });
 
     // Start the agent and get results
     const results = await praisonAI.start();
-    
+
     // Extract the response text from the results array
-    if (Array.isArray(results) && results.length > 0) {
+    if (Array.isArray(results) && results.length > 0 && results[0]) {
       // Praison AI returns an array with the response as the first element
       return resp.text(results[0]);
-    } else if (typeof results === 'string') {
+    }
+    if (typeof results === 'string') {
       return resp.text(results);
-    } else if (results && typeof results === 'object') {
+    }
+    if (results && typeof results === 'object') {
       // Return as JSON if it's an object
       return resp.json(results);
-    } else {
-      return resp.text("I'd be happy to help you with Praison AI multi-agent systems! Could you please provide more details about what you'd like to know?");
     }
+    return resp.text(
+      "I'd be happy to help you with Praison AI multi-agent systems! Could you please provide more details about what you'd like to know?"
+    );
   } catch (error) {
     ctx.logger.error('Error running agent:', error);
 

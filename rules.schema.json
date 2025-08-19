@@ -23,19 +23,12 @@
     },
     "language": {
       "type": "string",
-      "enum": [
-        "python",
-        "javascript"
-      ],
+      "enum": ["python", "javascript"],
       "description": "Programming language used"
     },
     "runtime": {
       "type": "string",
-      "enum": [
-        "uv",
-        "nodejs",
-        "bunjs"
-      ],
+      "enum": ["uv", "nodejs", "bunjs"],
       "description": "Runtime environment"
     },
     "src_dir": {
@@ -48,10 +41,7 @@
     },
     "bundle": {
       "type": "object",
-      "required": [
-        "enabled",
-        "ignore"
-      ],
+      "required": ["enabled", "ignore"],
       "properties": {
         "enabled": {
           "type": "boolean",
@@ -69,12 +59,7 @@
     },
     "development": {
       "type": "object",
-      "required": [
-        "port",
-        "watch",
-        "command",
-        "args"
-      ],
+      "required": ["port", "watch", "command", "args"],
       "properties": {
         "port": {
           "type": "integer",
@@ -82,10 +67,7 @@
         },
         "watch": {
           "type": "object",
-          "required": [
-            "enabled",
-            "files"
-          ],
+          "required": ["enabled", "files"],
           "properties": {
             "enabled": {
               "type": "boolean",
@@ -117,19 +99,11 @@
     },
     "deployment": {
       "type": "object",
-      "required": [
-        "resources",
-        "command",
-        "args"
-      ],
+      "required": ["resources", "command", "args"],
       "properties": {
         "resources": {
           "type": "object",
-          "required": [
-            "memory",
-            "cpu",
-            "disk"
-          ],
+          "required": ["memory", "cpu", "disk"],
           "properties": {
             "memory": {
               "type": "string",
@@ -166,16 +140,11 @@
         },
         "mode": {
           "type": "object",
-          "required": [
-            "type"
-          ],
+          "required": ["type"],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "on-demand",
-                "on-schedule"
-              ],
+              "enum": ["on-demand", "on-schedule"],
               "description": "Deployment mode"
             }
           },
@@ -186,9 +155,7 @@
     },
     "new_agent": {
       "type": "object",
-      "required": [
-        "steps"
-      ],
+      "required": ["steps"],
       "properties": {
         "steps": {
           "type": "array",
@@ -196,17 +163,11 @@
             "type": "object",
             "oneOf": [
               {
-                "required": [
-                  "action",
-                  "filename",
-                  "from"
-                ],
+                "required": ["action", "filename", "from"],
                 "properties": {
                   "action": {
                     "type": "string",
-                    "enum": [
-                      "create_file"
-                    ],
+                    "enum": ["create_file"],
                     "description": "Action to create a new file"
                   },
                   "filename": {
@@ -230,9 +191,7 @@
     },
     "new_project": {
       "type": "object",
-      "required": [
-        "steps"
-      ],
+      "required": ["steps"],
       "properties": {
         "steps": {
           "type": "array",
@@ -240,10 +199,7 @@
             "type": "object",
             "oneOf": [
               {
-                "required": [
-                  "command",
-                  "args"
-                ],
+                "required": ["command", "args"],
                 "properties": {
                   "command": {
                     "type": "string",
@@ -260,21 +216,14 @@
                 "additionalProperties": false
               },
               {
-                "required": [
-                  "action"
-                ],
+                "required": ["action"],
                 "oneOf": [
                   {
-                    "required": [
-                      "filename",
-                      "from"
-                    ],
+                    "required": ["filename", "from"],
                     "properties": {
                       "action": {
                         "type": "string",
-                        "enum": [
-                          "create_file"
-                        ],
+                        "enum": ["create_file"],
                         "description": "Action to create a new file"
                       },
                       "filename": {
@@ -289,16 +238,11 @@
                     "additionalProperties": false
                   },
                   {
-                    "required": [
-                      "filename",
-                      "template"
-                    ],
+                    "required": ["filename", "template"],
                     "properties": {
                       "action": {
                         "type": "string",
-                        "enum": [
-                          "create_file"
-                        ],
+                        "enum": ["create_file"],
                         "description": "Action to create a new file"
                       },
                       "filename": {
@@ -313,15 +257,11 @@
                     "additionalProperties": false
                   },
                   {
-                    "required": [
-                      "files"
-                    ],
+                    "required": ["files"],
                     "properties": {
                       "action": {
                         "type": "string",
-                        "enum": [
-                          "delete_file"
-                        ],
+                        "enum": ["delete_file"],
                         "description": "Action to delete files"
                       },
                       "files": {
@@ -335,17 +275,11 @@
                     "additionalProperties": false
                   },
                   {
-                    "required": [
-                      "from",
-                      "to",
-                      "filter"
-                    ],
+                    "required": ["from", "to", "filter"],
                     "properties": {
                       "action": {
                         "type": "string",
-                        "enum": [
-                          "copy_dir"
-                        ],
+                        "enum": ["copy_dir"],
                         "description": "Action to copy a directory"
                       },
                       "from": {
@@ -376,19 +310,14 @@
                     "properties": {
                       "action": {
                         "type": "string",
-                        "enum": [
-                          "modify_package_json"
-                        ],
+                        "enum": ["modify_package_json"],
                         "description": "Action to modify package.json"
                       },
                       "script": {
                         "type": "array",
                         "items": {
                           "type": "object",
-                          "required": [
-                            "name",
-                            "value"
-                          ],
+                          "required": ["name", "value"],
                           "properties": {
                             "name": {
                               "type": "string",
@@ -433,16 +362,11 @@
                     "additionalProperties": false
                   },
                   {
-                    "required": [
-                      "types",
-                      "compilerOptions"
-                    ],
+                    "required": ["types", "compilerOptions"],
                     "properties": {
                       "action": {
                         "type": "string",
-                        "enum": [
-                          "modify_ts_config"
-                        ],
+                        "enum": ["modify_ts_config"],
                         "description": "Action to modify tsconfig.json"
                       },
                       "types": {
@@ -456,21 +380,14 @@
                         "type": "array",
                         "items": {
                           "type": "object",
-                          "required": [
-                            "name",
-                            "value"
-                          ],
+                          "required": ["name", "value"],
                           "properties": {
                             "name": {
                               "type": "string",
                               "description": "Option name"
                             },
                             "value": {
-                              "type": [
-                                "string",
-                                "boolean",
-                                "number"
-                              ],
+                              "type": ["string", "boolean", "number"],
                               "description": "Option value"
                             }
                           }
@@ -481,16 +398,11 @@
                     "additionalProperties": false
                   },
                   {
-                    "required": [
-                      "filename",
-                      "content"
-                    ],
+                    "required": ["filename", "content"],
                     "properties": {
                       "action": {
                         "type": "string",
-                        "enum": [
-                          "append_file"
-                        ],
+                        "enum": ["append_file"],
                         "description": "Action to append content to a file"
                       },
                       "filename": {

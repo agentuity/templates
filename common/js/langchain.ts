@@ -26,7 +26,9 @@ export default async function LangChainAgent(
   ctx: AgentContext
 ) {
   try {
-    const userMessage = (await req.data.text()) ?? 'Tell me about LangChain and its capabilities.';
+    const userMessage =
+      (await req.data.text()) ??
+      'Tell me about LangChain and its capabilities.';
 
     // Create a ChatOpenAI model
     const model = new ChatOpenAI({

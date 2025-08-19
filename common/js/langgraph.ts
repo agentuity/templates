@@ -26,7 +26,9 @@ export default async function LangGraphAgent(
   ctx: AgentContext
 ) {
   try {
-    const userMessage = (await req.data.text()) ?? 'Tell me about LangGraph and its capabilities.';
+    const userMessage =
+      (await req.data.text()) ??
+      'Tell me about LangGraph and its capabilities.';
 
     // Create a ChatOpenAI model
     const model = new ChatOpenAI({
