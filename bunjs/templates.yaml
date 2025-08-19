@@ -95,3 +95,56 @@
     - action: create_file
       filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
       template: "common/js/mastra/agent.ts"
+- name: "VoltAgent"
+  description: "VoltAgent is a TypeScript framework for building and orchestrating scalable AI agents with workflow capabilities."
+  steps:
+    - command: bun
+      args:
+        - add
+        - --silent
+        - "@voltagent/core"
+        - "@voltagent/vercel-ai"
+        - "@ai-sdk/openai"
+        - "ai"
+        - "zod"
+    - action: create_file
+      filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
+      from: "common/js/voltagent.ts"
+- name: "Praison AI"
+  description: "Praison AI is a production-ready TypeScript framework for creating multi-AI agent systems with self-reflection capabilities."
+  steps:
+    - command: bun
+      args:
+        - add
+        - --silent
+        - praisonai
+    - action: create_file
+      filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
+      from: "common/js/praison.ts"
+- name: "LangGraph"
+  description: "LangGraph is a TypeScript framework for building stateful AI agents with graph-based workflows and human-in-the-loop controls."
+  steps:
+    - command: bun
+      args:
+        - add
+        - --silent
+        - "@langchain/langgraph"
+        - "@langchain/core"
+        - "@langchain/openai"
+        - "zod"
+    - action: create_file
+      filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
+      from: "common/js/langgraph.ts"
+- name: "LangChain"
+  description: "LangChain is a TypeScript framework for building LLM-powered applications with chains, agents, and memory."
+  steps:
+    - command: bun
+      args:
+        - add
+        - --silent
+        - "@langchain/core"
+        - "@langchain/openai"
+        - "zod"
+    - action: create_file
+      filename: "src/agents/{{ .AgentName | safe_filename }}/index.ts"
+      from: "common/js/langchain.ts"
