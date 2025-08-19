@@ -1,5 +1,5 @@
 from agentuity import AgentRequest, AgentResponse, AgentContext  
-from agents import Agent, InputGuardrail, GuardrailFunctionOutput, Runner
+from agents import Agent, Runner, InputGuardrail, GuardrailFunctionOutput
 from pydantic import BaseModel  
 
 class QueryClassification(BaseModel):  
