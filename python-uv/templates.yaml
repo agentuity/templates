@@ -120,20 +120,6 @@
     - action: create_file
       filename: "agentuity_agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
-- name: "OpenAI Swarm"
-  description: "OpenAI Swarm is an educational framework for building lightweight multi-agent orchestration systems."
-  steps:
-    - command: uv
-      args:
-        - add
-        - --quiet
-        - git+https://github.com/openai/swarm.git
-    - action: create_file
-      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/agent.py"
-      from: "common/py/swarm.py"
-    - action: create_file
-      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/__init__.py"
-      template: "common/py/init.py"
 - name: "AutoGen"
   description: "Microsoft AutoGen is a framework for building multi-agent conversational AI applications."
   steps:
@@ -206,6 +192,22 @@
     - action: create_file
       filename: "agentuity_agents/{{ .AgentName | safe_filename }}/agent.py"
       from: "common/py/langgraph.py"
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
+- name: "OpenAI Agents"
+  description: "OpenAI Agents framework for building multi-agent systems with handoffs, guardrails, and specialization."
+  steps:
+    - command: uv
+      args:
+        - add
+        - --quiet
+        - openai>=1.82.0
+        - git+https://github.com/openai/openai-agents-python.git
+        - pydantic
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/agent.py"
+      from: "common/py/openai_agents.py"
     - action: create_file
       filename: "agentuity_agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
