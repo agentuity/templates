@@ -23,7 +23,7 @@ async def run(request: AgentRequest, response: AgentResponse, context: AgentCont
     }]
 
     try:
-        result = await acompletion(model="openai/gpt-4o-mini", messages=messages)
+        result = await acompletion(model="openai/gpt-5-mini", messages=messages)
 
         return response.text(result.choices[0].message.content)
     except Exception as e:

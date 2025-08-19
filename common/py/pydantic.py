@@ -1,7 +1,7 @@
 from agentuity import AgentRequest, AgentResponse, AgentContext
 from pydantic_ai import Agent
 
-client = Agent("openai:gpt-4o-mini")
+client = Agent("openai:gpt-5-mini")
 
 def welcome():
     return {
