@@ -120,3 +120,92 @@
     - action: create_file
       filename: "agentuity_agents/{{ .AgentName | safe_filename }}/__init__.py"
       template: "common/py/init.py"
+- name: "OpenAI Swarm"
+  description: "OpenAI Swarm is an educational framework for building lightweight multi-agent orchestration systems."
+  steps:
+    - command: uv
+      args:
+        - add
+        - --quiet
+        - git+https://github.com/openai/swarm.git
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/agent.py"
+      from: "common/py/swarm.py"
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
+- name: "AutoGen"
+  description: "Microsoft AutoGen is a framework for building multi-agent conversational AI applications."
+  steps:
+    - command: uv
+      args:
+        - add
+        - --quiet
+        - autogen-agentchat
+        - autogen-ext[openai]
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/agent.py"
+      from: "common/py/autogen.py"
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
+- name: "Haystack"
+  description: "Haystack is a framework for building AI-powered search applications with RAG (Retrieval Augmented Generation) capabilities."
+  steps:
+    - command: uv
+      args:
+        - add
+        - --quiet
+        - haystack-ai
+        - sentence-transformers
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/agent.py"
+      from: "common/py/haystack.py"
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
+- name: "AWS Strands"
+  description: "AWS Strands is an open-source AI agents SDK that takes a model-driven approach to building agents with tool integration."
+  steps:
+    - command: uv
+      args:
+        - add
+        - --quiet
+        - strands-agents
+        - strands-agents-tools
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/agent.py"
+      from: "common/py/strands.py"
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
+- name: "Praison AI"
+  description: "Praison AI is a production-ready framework for creating multi-AI agent systems with self-reflection capabilities."
+  steps:
+    - command: uv
+      args:
+        - add
+        - --quiet
+        - praisonaiagents
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/agent.py"
+      from: "common/py/praison.py"
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"
+- name: "LangGraph"
+  description: "LangGraph is a framework for building stateful AI agents with graph-based workflows and human-in-the-loop controls."
+  steps:
+    - command: uv
+      args:
+        - add
+        - --quiet
+        - langgraph
+        - langchain-openai
+        - langchain-core
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/agent.py"
+      from: "common/py/langgraph.py"
+    - action: create_file
+      filename: "agentuity_agents/{{ .AgentName | safe_filename }}/__init__.py"
+      template: "common/py/init.py"

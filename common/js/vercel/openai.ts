@@ -1,6 +1,6 @@
 import type { AgentContext, AgentRequest, AgentResponse } from '@agentuity/sdk';
 import { openai } from '@ai-sdk/openai';
-import { generateText } from 'ai';
+import { streamText } from 'ai';
 
 export const welcome = () => {
   return {
@@ -25,14 +25,14 @@ export default async function Agent(
   ctx: AgentContext
 ) {
   try {
-    const result = await generateText({
+    const result = await streamText({
       model: openai('gpt-5-mini'),
       system:
         'You are a helpful assistant that provides concise and accurate information.',
       prompt: (await req.data.text()) ?? 'Hello, OpenAI',
     });
 
-    return resp.text(result.text);
+    return resp.stream(result.textStream);
   } catch (error) {
     ctx.logger.error('Error running agent:', error);
 
