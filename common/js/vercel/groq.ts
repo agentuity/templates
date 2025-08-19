@@ -25,7 +25,7 @@ export default async function Agent(
   ctx: AgentContext
 ) {
   try {
-    const result = streamText({
+    const result = await streamText({
       model: groq('llama-3.1-8b-instant'),
       prompt: (await req.data.text()) ?? 'Hello, Groq',
     });

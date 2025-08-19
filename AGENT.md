@@ -90,6 +90,7 @@ When adding new AI agent frameworks to the templates:
 - **JSON Responses**: Use `resp.json(object)` for complex objects or arrays
 - **Array Results**: Extract text first: `results[0]` then use `resp.text()`
 - **Fallback Responses**: Always provide meaningful fallback messages
+- **Vercel AI SDK Streaming**: Use `streamText` with `resp.stream()` for better streaming response handling
 
 ### Framework-Specific Debugging
 - **Module Import Issues**: Use dynamic imports or aliases to avoid conflicts

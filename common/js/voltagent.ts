@@ -1,5 +1,5 @@
 import type { AgentContext, AgentRequest, AgentResponse } from '@agentuity/sdk';
-import { generateText } from 'ai';
+import { streamText } from 'ai';
 import { openai } from '@ai-sdk/openai';
 
 export const welcome = () => {
@@ -30,13 +30,13 @@ export default async function Agent(
     // Use AI SDK directly to demonstrate VoltAgent concepts
     // In a real VoltAgent application, you would use the VoltAgent framework
     // with proper agent orchestration, workflows, and tool integration
-    const result = await generateText({
+    const result = await streamText({
       model: openai('gpt-5-mini'),
       system: 'You are an expert in VoltAgent, a TypeScript framework for building and orchestrating AI agents. You help users understand workflow orchestration, multi-agent systems, tool integration, memory management, observability, and building scalable AI applications. Provide detailed, practical information about VoltAgent development including code examples when appropriate.',
       prompt: userMessage,
     });
 
-    return resp.text(result.text);
+    return resp.stream(result.textStream);
   } catch (error) {
     ctx.logger.error('Error running agent:', error);
 
