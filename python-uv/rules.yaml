@@ -71,14 +71,9 @@ new_project:
     - action: delete_file
       files:
         - "hello.py"
-    - action: copy_dir
-      from: "common/cursor"
-      to: ".cursor/rules"
-      filter: "*.mdc"
-    - action: copy_dir
-      from: "common/py/cursor"
-      to: ".cursor/rules"
-      filter: "*.mdc"
+    - action: create_file
+      filename: "AGENTS.md"
+      from: "common/py/AGENTS.md"
     - action: create_file
       filename: "server.py"
       from: "common/py/boot.py"
