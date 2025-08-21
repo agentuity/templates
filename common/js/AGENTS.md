@@ -1,14 +1,27 @@
----
-description: Agentuity JavaScript SDK API Reference
-globs: "src/agents/**/*.ts"
-alwaysApply: false
----
+# Agentuity JavaScript/TypeScript Agent Development
 
-# Agentuity JavaScript SDK
+This guide provides comprehensive instructions for developing AI agents using the Agentuity platform with JavaScript and TypeScript.
 
-The Agentuity JavaScript SDK provides a powerful framework for building AI agents in JavaScript and TypeScript. This cursor rules file helps you navigate the SDK's core interfaces and methods.
+## 1. Agent Development Guidelines
 
-## Core Interfaces
+- Prefer using the `agentuity agent create` command to create a new Agent
+- Prefer loading types from the node modules package `@agentuity/sdk` in the node_modules folder
+- The file should export a default function
+- Prefer naming the default function Agent or the name of the Agent based on the context of the Agent description
+- All code should be in TypeScript format
+- Use the provided logger from the `AgentContext` interface such as `ctx.logger.info("my message: %s", "hello")`
+
+### Example Agent File
+
+```typescript
+import type { AgentRequest, AgentResponse, AgentContext } from "@agentuity/sdk";
+
+export default async function Agent(req: AgentRequest, resp: AgentResponse, ctx: AgentContext) {
+	return resp.json({hello: 'world'});
+}
+```
+
+## 2. Core Interfaces
 
 ### AgentHandler
 
@@ -57,7 +70,7 @@ The `AgentContext` interface provides access to various capabilities:
 - `context.getAgent(params)`: Gets a handle to a remote agent
 - `context.tracer`: OpenTelemetry tracing
 
-## Storage APIs
+## 3. Storage APIs
 
 ### Key-Value Storage
 
@@ -75,7 +88,7 @@ Access through `context.vector`:
 - `context.vector.search(name, params)`: Searches for vectors
 - `context.vector.delete(name, ...ids)`: Deletes vectors
 
-## Logging
+## 4. Logging
 
 Access through `context.logger`:
 
@@ -85,7 +98,7 @@ Access through `context.logger`:
 - `context.logger.error(message, ...args)`: Logs an error message
 - `context.logger.child(opts)`: Creates a child logger with additional context
 
-## Best Practices
+## 5. Best Practices
 
 - Use TypeScript for better type safety and IDE support
 - Import types from `@agentuity/sdk`

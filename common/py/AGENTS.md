@@ -1,13 +1,25 @@
----
-description: Agentuity Python SDK API Reference
-globs: "agents/**/*.py"
----
+# Agentuity Python Agent Development
 
-# Agentuity Python SDK
+This guide provides comprehensive instructions for developing AI agents using the Agentuity platform with Python.
 
-The Agentuity Python SDK provides a powerful framework for building AI agents in Python. This cursor rules file helps you navigate the SDK's core interfaces and methods.
+## 1. Agent Development Guidelines
 
-## Core Interfaces
+- Prefer using the `agentuity agent create` command to create a new Agent
+- Prefer importing types from the `agentuity` package
+- The file should define an async function named `run`
+- All code should follow Python best practices and type hints
+- Use the provided logger from the `AgentContext` interface such as `context.logger.info("my message: %s", "hello")`
+
+### Example Agent File
+
+```python
+from agentuity import AgentRequest, AgentResponse, AgentContext
+
+async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
+    return response.json({"hello": "world"})
+```
+
+## 2. Core Interfaces
 
 ### Agent Handler
 
@@ -58,7 +70,7 @@ The `AgentContext` class provides access to various capabilities:
 - `context.tracer`: OpenTelemetry tracing
 - Environment properties: `sdkVersion`, `devmode`, `orgId`, `projectId`, etc.
 
-## Storage APIs
+## 3. Storage APIs
 
 ### Key-Value Storage
 
@@ -76,7 +88,7 @@ Access through `context.vector`:
 - `await context.vector.search(name, params)`: Searches for vectors
 - `await context.vector.delete(name, *ids)`: Deletes vectors
 
-## Logging
+## 4. Logging
 
 Access through `context.logger`:
 
@@ -86,7 +98,7 @@ Access through `context.logger`:
 - `context.logger.error(message, *args, **kwargs)`: Logs an error message
 - `context.logger.child(**kwargs)`: Creates a child logger with additional context
 
-## Best Practices
+## 5. Best Practices
 
 - Use type hints for better IDE support
 - Import types from `agentuity`
