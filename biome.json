@@ -20,6 +20,6 @@
     }
   },
   "files": {
-    "includes": ["**", "!**/.agentuity/**"]
+    "includes": ["**", "!**/.agentuity", "!**/common/js"]
   }
 }
