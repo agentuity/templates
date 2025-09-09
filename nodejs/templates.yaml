@@ -77,10 +77,11 @@
 - name: "Vercel AI SDK + Groq"
   description: "Vercel AI SDK is a TypeScript SDK for building AI powered applications. This template adds the Groq provider."
   steps:
-    - command: bun
+    - command: npm
       args:
-        - add
-        - --silent
+        - install
+        - --no-fund
+        - --no-audit
         - ai
         - "@ai-sdk/groq"
     - action: create_file
