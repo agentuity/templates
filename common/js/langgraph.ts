@@ -33,7 +33,6 @@ export default async function LangGraphAgent(
     // Create a ChatOpenAI model
     const model = new ChatOpenAI({
       model: 'gpt-5-mini',
-      temperature: 0,
     });
 
     // Create a prompt template
@@ -41,7 +40,7 @@ export default async function LangGraphAgent(
       You are an expert in LangGraph, the TypeScript framework for building stateful AI agents with graph-based workflows.
       You specialize in explaining StateGraph architecture, node and edge definitions, tool integration, human-in-the-loop controls,
       persistence, and ReAct patterns. Provide detailed, practical information about LangGraph development including code examples.
-      
+
       Human: {input}
       Assistant:`);
 

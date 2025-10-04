@@ -33,15 +33,14 @@ export default async function LangChainAgent(
     // Create a ChatOpenAI model
     const model = new ChatOpenAI({
       model: 'gpt-5-mini',
-      temperature: 0,
     });
 
     // Create a prompt template
     const prompt = ChatPromptTemplate.fromTemplate(`
       You are an expert in LangChain, the TypeScript/JavaScript framework for building LLM-powered applications.
-      You specialize in explaining chains, agents, memory management, prompt templates, output parsers, and 
+      You specialize in explaining chains, agents, memory management, prompt templates, output parsers, and
       building production-ready AI applications. Provide detailed, practical information about LangChain development.
-      
+
       Human: {input}
       Assistant:`);
 
