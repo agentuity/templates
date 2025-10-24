@@ -111,7 +111,7 @@ Access through `context.logger`:
 - Use the storage APIs for persisting data
 - Consider agent communication for complex workflows
 
-## 6. How to use the documentation site, it's API's, etc.
+## 6. How to use the documentation site, its APIs, etc.
 
 The Agentuity documentation site provides API endpoints that AI agents can use to search and read documentation programmatically.
 
