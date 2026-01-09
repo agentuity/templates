@@ -9,6 +9,10 @@
 
 # Agentuity Project Templates
 
+> [!WARNING]
+> This repo has now been deprecated in favor of the new opensource [SDK mono repo](https://github.com/agentuity/sdk) and will be archived soon.
+
+
 These are templates for Agentuity projects. They are designed to help you get started with building your own Agents using the Agentuity Cloud Platform.
 
 These templates are automatically available when using the `agentuity new` command from the [Agentuity CLI](https://github.com/agentuity/cli).
